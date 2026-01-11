@@ -313,15 +313,15 @@ export default function MenuPage() {
             {menuData.pasta.map((item, index) => (
               <div
                 key={item.name}
-                className={`px-6 py-4 flex justify-between items-center ${
+                className={`px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 ${
                   index % 2 === 0 ? "bg-white" : "bg-[#FFF5EE]"
                 }`}
               >
-                <div>
-                  <h3 className="font-bold text-[#2C3E50]">{item.name}</h3>
-                  <p className="text-sm text-[#2C3E50]/60">{item.description}</p>
+                <div className="flex-1">
+                  <h3 className="font-bold text-[#2C3E50] text-sm md:text-base">{item.name}</h3>
+                  <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{item.description}</p>
                 </div>
-                <span className="font-bold text-[#FF6B6B] text-lg">{item.price}</span>
+                <span className="font-bold text-[#FF6B6B] text-base md:text-lg">{item.price}</span>
               </div>
             ))}
           </div>
@@ -329,18 +329,18 @@ export default function MenuPage() {
 
         {/* Combo Dinners Section */}
         <section className="mb-12">
-          <div className="bg-gradient-to-r from-[#FF6B6B] to-[#FF9A5C] rounded-2xl p-8 text-white">
-            <h2 className="text-3xl font-bold text-center mb-2">Combo Dinners</h2>
-            <p className="text-center text-white/90 mb-6">Served with your choice of Caesar or Greek Salad and Garlic Bread</p>
+          <div className="bg-gradient-to-r from-[#FF6B6B] to-[#FF9A5C] rounded-2xl p-6 md:p-8 text-white">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Combo Dinners</h2>
+            <p className="text-center text-white/90 mb-6 text-sm md:text-base">Served with your choice of Caesar or Greek Salad and Garlic Bread</p>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
               {menuData.comboDinners.map((combo) => (
-                <div key={combo.name} className="bg-white/20 backdrop-blur-sm rounded-xl p-4 flex justify-between items-center">
-                  <div>
-                    <h3 className="font-bold">{combo.name}</h3>
-                    <p className="text-sm text-white/80">{combo.description}</p>
+                <div key={combo.name} className="bg-white/20 backdrop-blur-sm rounded-xl p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                  <div className="flex-1">
+                    <h3 className="font-bold text-sm md:text-base">{combo.name}</h3>
+                    <p className="text-xs md:text-sm text-white/80">{combo.description}</p>
                   </div>
-                  <span className="font-bold text-2xl">{combo.price}</span>
+                  <span className="font-bold text-xl md:text-2xl">{combo.price}</span>
                 </div>
               ))}
             </div>
