@@ -91,19 +91,25 @@ export default function MenuPage() {
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF6B6B] to-[#FF9A5C] flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">B</span>
-            </div>
-            <div>
-              <h1 className="text-xl md:text-2xl font-bold text-[#2C3E50]">
-                J. Beethoven&apos;s Pizza
-              </h1>
-              <p className="text-xs text-[#4ECDC4] hidden sm:block">
-                Since 1979 - Cultus Lake, BC
-              </p>
-            </div>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-[#2C3E50] hover:text-[#FF6B6B] transition-colors font-medium"
+            >
+              <ArrowLeft size={20} />
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+            <span className="text-gray-300 hidden sm:inline">|</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/logo.png"
+                alt="J. Beethoven's Pizza"
+                width={120}
+                height={50}
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
+          </div>
           <a href="tel:604-858-7766" className="btn-primary flex items-center gap-2">
             <Phone size={18} />
             <span className="hidden sm:inline">Call to Order</span>
