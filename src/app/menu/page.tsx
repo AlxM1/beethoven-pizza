@@ -118,11 +118,11 @@ const menuData = {
     },
   },
   appetizers: [
-    { name: "Spanakopita", description: "4 pieces", price: "$9.00", image: "/images/IMG_3253.jpg" },
-    { name: "Garlic Bread", description: "Fresh baked with garlic butter", price: "$6.00" },
-    { name: "Garlic Bread with Cheese", description: "Topped with melted mozzarella", price: "$8.00" },
-    { name: "Chicken Wings", description: "10 pieces", price: "$15.00" },
-    { name: "Dry Garlic Ribs", description: "Crispy and flavorful", price: "$14.00" },
+    { name: "Spanakopita", description: "8 crispy phyllo triangles stuffed with spinach & feta", price: "$14.00", image: "/images/IMG_3253.jpg" },
+    { name: "Garlic Bread", description: "Fresh baked with garlic butter", price: "$5.00" },
+    { name: "Garlic Cheese Bread", description: "Topped with melted mozzarella", price: "$9.00" },
+    { name: "Chicken Wings", description: "6 pieces - Hot or Honey Garlic", price: "$9.00" },
+    { name: "Dry Garlic Ribs", description: "8 oz of crispy, flavorful ribs", price: "$9.00" },
   ],
   salads: [
     {
@@ -426,10 +426,10 @@ export default function MenuPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-2">
               Salads
             </h2>
-            <p className="text-[#2C3E50]/70">Served with garlic bread</p>
+            <p className="text-[#2C3E50]/70">Large salads served with garlic bread</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {menuData.salads.map((salad) => (
               <div
                 key={salad.name}
@@ -463,7 +463,38 @@ export default function MenuPage() {
             ))}
           </div>
           <div className="text-center mt-6">
-            <p className="text-[#2C3E50]/70">Add Grilled Chicken to any salad - $5.00</p>
+            <p className="text-[#2C3E50]/70">Add Shrimp to any salad - $6.00 | Extra Dressing - $1.50</p>
+          </div>
+        </section>
+
+        {/* Pasta Section */}
+        <section className="mb-16">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-2 bg-[#FFE66D]/30 rounded-full text-[#2C3E50] font-semibold text-sm mb-4">
+              Italian Classics
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-2">
+              Pasta
+            </h2>
+            <p className="text-[#2C3E50]/70">All pasta dishes served with garlic bread</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {menuData.pasta.map((item) => (
+              <div
+                key={item.name}
+                className="menu-card bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
+              >
+                <div className="h-20 bg-gradient-to-br from-[#FF6B6B]/20 to-[#FFE66D]/30 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-4xl">🍝</span>
+                </div>
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-bold text-[#2C3E50]">{item.name}</h3>
+                  <span className="font-bold text-[#FF6B6B] text-lg">{item.price}</span>
+                </div>
+                <p className="text-sm text-[#2C3E50]/70">{item.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
