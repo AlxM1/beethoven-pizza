@@ -56,16 +56,16 @@ export default function Locations() {
 
       mapInstanceRef.current = map;
 
-      // Create custom marker content
+      // Create custom marker content - Summer lakeside theme
       const markerDiv = document.createElement("div");
       markerDiv.innerHTML = `
         <div style="
-          background: linear-gradient(135deg, #E63946 0%, #F77F00 100%);
+          background: linear-gradient(135deg, #FF6B6B 0%, #FF9A5C 100%);
           padding: 10px 16px;
           border-radius: 20px;
           color: white;
           font-weight: bold;
-          box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+          box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
           white-space: nowrap;
           cursor: pointer;
           font-size: 14px;
@@ -89,7 +89,7 @@ export default function Locations() {
           title: location.name,
           label: {
             text: "J. Beethoven's Pizza",
-            color: "#E63946",
+            color: "#FF6B6B",
             fontWeight: "bold",
           },
         });
@@ -104,13 +104,13 @@ export default function Locations() {
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-white rounded-full text-[#E63946] font-semibold text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-white rounded-full text-[#FF6B6B] font-semibold text-sm mb-4">
             Visit Us
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D1810] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C3E50] mb-4">
             Find Us at Cultus Lake
           </h2>
-          <p className="text-[#8B4513] text-lg max-w-2xl mx-auto">
+          <p className="text-[#2C3E50]/70 text-lg max-w-2xl mx-auto">
             Located on Columbia Valley Highway, just minutes from the lake!
           </p>
         </div>
@@ -130,30 +130,30 @@ export default function Locations() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-[#2D1810] mb-2">
+                  <h3 className="text-2xl font-bold text-[#2C3E50] mb-2">
                     J. Beethoven&apos;s Pizza
                   </h3>
-                  <p className="text-[#E63946] font-medium">Cultus Lake, BC</p>
-                  <p className="text-sm text-[#8B4513]">Since 1979</p>
+                  <p className="text-[#FF6B6B] font-medium">Cultus Lake, BC</p>
+                  <p className="text-sm text-[#4ECDC4]">Since 1979</p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <MapPin size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
+                  <MapPin size={20} className="text-[#FF6B6B] mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-[#2D1810]">Address</p>
-                    <p className="text-[#8B4513]">{location.address}</p>
+                    <p className="font-medium text-[#2C3E50]">Address</p>
+                    <p className="text-[#2C3E50]/70">{location.address}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Phone size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
+                  <Phone size={20} className="text-[#FF6B6B] mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-[#2D1810]">Phone</p>
+                    <p className="font-medium text-[#2C3E50]">Phone</p>
                     <a
                       href="tel:604-858-7766"
-                      className="text-[#E63946] font-semibold hover:underline text-lg"
+                      className="text-[#FF6B6B] font-semibold hover:underline text-lg"
                     >
                       {location.phone}
                     </a>
@@ -161,11 +161,11 @@ export default function Locations() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
+                  <Clock size={20} className="text-[#FF6B6B] mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-[#2D1810]">Hours</p>
-                    <p className="text-[#8B4513]">{location.hours}</p>
-                    <p className="text-sm text-[#8B4513]">{location.fullMenuHours}</p>
+                    <p className="font-medium text-[#2C3E50]">Hours</p>
+                    <p className="text-[#2C3E50]/70">{location.hours}</p>
+                    <p className="text-sm text-[#4ECDC4]">{location.fullMenuHours}</p>
                   </div>
                 </div>
               </div>
@@ -175,14 +175,14 @@ export default function Locations() {
                   href={`https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 btn-primary flex items-center justify-center gap-2"
+                  className="flex-1 btn-turquoise flex items-center justify-center gap-2"
                 >
                   <Navigation size={18} />
                   Get Directions
                 </a>
                 <a
                   href="tel:604-858-7766"
-                  className="flex-1 btn-secondary flex items-center justify-center gap-2"
+                  className="flex-1 btn-primary flex items-center justify-center gap-2"
                 >
                   <Phone size={18} />
                   Call Now
@@ -192,23 +192,23 @@ export default function Locations() {
 
             {/* Additional info */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h4 className="font-bold text-[#2D1810] mb-4">Good to Know</h4>
+              <h4 className="font-bold text-[#2C3E50] mb-4">Good to Know</h4>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className="text-green-500">&#10003;</span>
-                  <span className="text-[#8B4513]">Patio seating available</span>
+                  <span className="text-[#4ECDC4]">&#10003;</span>
+                  <span className="text-[#2C3E50]/70">Patio seating available</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-green-500">&#10003;</span>
-                  <span className="text-[#8B4513]">Gluten-free options</span>
+                  <span className="text-[#4ECDC4]">&#10003;</span>
+                  <span className="text-[#2C3E50]/70">Gluten-free options</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-green-500">&#10003;</span>
-                  <span className="text-[#8B4513]">Beer & wine</span>
+                  <span className="text-[#4ECDC4]">&#10003;</span>
+                  <span className="text-[#2C3E50]/70">Beer & wine</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-green-500">&#10003;</span>
-                  <span className="text-[#8B4513]">Takeout available</span>
+                  <span className="text-[#4ECDC4]">&#10003;</span>
+                  <span className="text-[#2C3E50]/70">Takeout available</span>
                 </div>
               </div>
             </div>
@@ -218,10 +218,10 @@ export default function Locations() {
           <div className="h-[400px] lg:h-auto lg:min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
             <div ref={mapRef} className="w-full h-full">
               {!mapLoaded && (
-                <div className="w-full h-full flex items-center justify-center bg-[#FFF5E6]">
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#B8E8E4]/30 to-[#FFF5EE]">
                   <div className="text-center">
                     <div className="text-4xl mb-4 animate-bounce">📍</div>
-                    <p className="text-[#8B4513]">Loading map...</p>
+                    <p className="text-[#2C3E50]/70">Loading map...</p>
                   </div>
                 </div>
               )}
