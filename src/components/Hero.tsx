@@ -35,17 +35,17 @@ export default function Hero({ currentStep, onOrderClick }: HeroProps) {
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Legendary
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+            Best Detroit-Style Pizza in Cultus Lake
             <br />
             <span className="text-[#FFE66D]">
-              Square-Cut Pizza
+              Legendary Square-Cut Since 1979
             </span>
-          </h2>
+          </h1>
 
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg drop-shadow-md">
-            Thick-crust, Detroit-style pizza made with fresh ingredients
-            and time-honored recipes. A family tradition for over 45 years.
+            Award-winning thick-crust Detroit-style pizza made with fresh ingredients
+            and time-honored family recipes. Voted best pizza in Fraser Valley. Gluten-free options available.
           </p>
 
           {/* CTA Buttons */}
