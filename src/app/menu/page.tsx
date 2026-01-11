@@ -121,10 +121,10 @@ export default function MenuPage() {
       <section className="bg-gradient-to-br from-[#FF6B6B] via-[#FF9A5C] to-[#FFE66D] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            Our Menu
+            Full Menu - Beethoven's Pizza Cultus Lake
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-            Detroit-style square-cut pizzas made fresh daily since 1979
+            Detroit-style square-cut pizzas, fresh pasta, appetizers & more. Made fresh daily since 1979. Gluten-free & vegetarian options available.
           </p>
           <p className="mt-4 text-white/80">
             Small (6 slices) • Medium (8 slices) • Large (12 slices)
