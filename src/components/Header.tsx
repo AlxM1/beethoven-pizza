@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, MapPin, Clock } from "lucide-react";
+import { Menu, X, Phone, Clock } from "lucide-react";
 
 interface HeaderProps {
   onOrderClick: () => void;
@@ -22,7 +22,7 @@ export default function Header({ onOrderClick }: HeaderProps) {
   const navLinks = [
     { href: "#menu", label: "Menu" },
     { href: "#about", label: "About" },
-    { href: "#locations", label: "Locations" },
+    { href: "#location", label: "Location" },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -34,16 +34,14 @@ export default function Header({ onOrderClick }: HeaderProps) {
           <div className="flex items-center gap-6">
             <a href="tel:604-858-7766" className="flex items-center gap-2 hover:text-[#FCBF49] transition-colors">
               <Phone size={14} />
-              <span>Cultus Lake: 604-858-7766</span>
+              <span>(604) 858-7766</span>
             </a>
-            <a href="tel:604-421-7735" className="flex items-center gap-2 hover:text-[#FCBF49] transition-colors">
-              <Phone size={14} />
-              <span>Burnaby: 604-421-7735</span>
-            </a>
+            <span className="text-[#D4A574]">|</span>
+            <span>4125 Columbia Valley Highway, Cultus Lake, BC</span>
           </div>
           <div className="flex items-center gap-2">
             <Clock size={14} />
-            <span>Open Daily - See Hours Below</span>
+            <span>Daily 12:00 PM - 8:00 PM</span>
           </div>
         </div>
       </div>
@@ -63,10 +61,10 @@ export default function Header({ onOrderClick }: HeaderProps) {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-bold text-[#2D1810]">
-                  Beethoven&apos;s Pizza
+                  J. Beethoven&apos;s Pizza
                 </h1>
                 <p className="text-xs text-[#8B4513] hidden sm:block">
-                  A Symphony of Flavors
+                  Since 1979 - Cultus Lake, BC
                 </p>
               </div>
             </a>
@@ -87,13 +85,13 @@ export default function Header({ onOrderClick }: HeaderProps) {
 
             {/* CTA Button - Desktop */}
             <div className="hidden lg:flex items-center gap-4">
-              <button
-                onClick={onOrderClick}
+              <a
+                href="tel:604-858-7766"
                 className="btn-primary flex items-center gap-2"
               >
-                <span>Order Now</span>
-                <span className="text-lg">🍕</span>
-              </button>
+                <Phone size={18} />
+                <span>Call to Order</span>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -137,32 +135,29 @@ export default function Header({ onOrderClick }: HeaderProps) {
               >
                 <Phone size={18} className="text-[#E63946]" />
                 <div>
-                  <p className="font-medium">Cultus Lake</p>
-                  <p className="text-sm text-gray-600">604-858-7766</p>
+                  <p className="font-medium">Call Us</p>
+                  <p className="text-sm text-gray-600">(604) 858-7766</p>
                 </div>
               </a>
-              <a
-                href="tel:604-421-7735"
-                className="flex items-center gap-3 py-3 px-4 text-[#2D1810] hover:bg-[#FFF5E6] rounded-lg"
-              >
-                <Phone size={18} className="text-[#E63946]" />
+              <div className="flex items-center gap-3 py-3 px-4 text-[#8B4513]">
+                <Clock size={18} className="text-[#E63946]" />
                 <div>
-                  <p className="font-medium">Burnaby</p>
-                  <p className="text-sm text-gray-600">604-421-7735</p>
+                  <p className="font-medium text-[#2D1810]">Hours</p>
+                  <p className="text-sm">Daily 12:00 PM - 8:00 PM</p>
+                  <p className="text-xs">Full Menu 3:00 PM - 7:20 PM</p>
                 </div>
-              </a>
+              </div>
             </div>
 
             {/* Mobile Order Button */}
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onOrderClick();
-              }}
-              className="mt-4 btn-primary text-center"
+            <a
+              href="tel:604-858-7766"
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-4 btn-primary text-center flex items-center justify-center gap-2"
             >
-              Order Now 🍕
-            </button>
+              <Phone size={18} />
+              Call to Order
+            </a>
           </nav>
         </div>
       </header>
