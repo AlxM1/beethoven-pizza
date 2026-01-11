@@ -2,6 +2,7 @@
 
 import { Phone, MapPin, Clock, Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface FooterProps {
   onOrderClick: () => void;
@@ -36,15 +37,15 @@ export default function Footer({ onOrderClick }: FooterProps) {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full pizza-gradient flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">B</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">J. Beethoven&apos;s Pizza</h3>
-                <p className="text-sm text-[#4ECDC4]">Since 1979</p>
-              </div>
-            </div>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/images/logo.png"
+                alt="J. Beethoven's Pizza"
+                width={160}
+                height={70}
+                className="h-16 w-auto object-contain brightness-0 invert"
+              />
+            </Link>
             <p className="text-[#B8E8E4] mb-4">
               Legendary thick-crust, square-cut pizza made fresh daily.
               A Cultus Lake tradition for over 45 years.
