@@ -1,0 +1,11 @@
+# robots.txt for Beethoven's Pizza
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://beethovenspizza.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
