@@ -16,7 +16,7 @@ export default function Hero({ currentStep, onOrderClick }: HeroProps) {
       <div className="absolute inset-0">
         <Image
           src="/images/_MG_4466.jpg"
-          alt="Delicious Detroit-style pepperoni pizza from J. Beethoven's"
+          alt="Delicious Detroit-style pepperoni pizza with cup and char pepperoni, thick crust, square cut - Beethoven's Pizza Cultus Lake BC specialty"
           fill
           className="object-cover"
           priority

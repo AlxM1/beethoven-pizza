@@ -12,7 +12,7 @@ export default function About() {
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/_MG_4414.jpg"
-                alt="J. Beethoven's Pizza - Restaurant front with patio"
+                alt="Beethoven's Pizza restaurant exterior in Cultus Lake BC with outdoor patio seating, string lights, and welcoming entrance since 1979"
                 fill
                 className="object-cover"
               />
