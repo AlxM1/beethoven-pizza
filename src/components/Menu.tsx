@@ -1,104 +1,97 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { Phone } from "lucide-react";
+import Image from "next/image";
 
 interface MenuProps {
   onOrderPizza: (pizzaName: string) => void;
 }
 
 const menuData = {
-  signaturePizzas: [
+  pizzas: [
     {
-      name: "New Yorker",
-      description: "Italian sausage, tomato, green pepper, onion, fresh garlic",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
+      name: "Beethoven's Special",
+      description: "Our signature loaded pizza with salami rings filled with premium toppings",
+      image: "/images/Beethoven's Special.JPEG",
+      popular: true,
+    },
+    {
+      name: "Pepperoni",
+      description: "Classic cup-and-char pepperoni with mozzarella on our thick crust",
+      image: "/images/pepperoni.JPEG",
       popular: true,
     },
     {
       name: "Hawaiian",
-      description: "Ham, pineapple",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
+      description: "Ham and pineapple - a classic combination",
+      image: "/images/_MG_4486.jpg",
       popular: true,
     },
     {
-      name: "Deluxe",
-      description: "Ham, salami, green pepper, onion, tomato",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
+      name: "Vegetarian",
+      description: "Black olives, tomatoes, green peppers, onions, and feta cheese",
+      image: "/images/image6.JPG",
       popular: false,
     },
     {
-      name: "Athenian (Veggie)",
-      description: "Spinach, black olives, tomato, green pepper, onion, feta cheese",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
-      popular: false,
-    },
-    {
-      name: "Olympian",
-      description: "Ground beef, tomato, red onion, green pepper",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
-      popular: false,
-    },
-    {
-      name: "Herculean (Meat Lovers)",
-      description: "Pepperoni, salami, ground beef",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
+      name: "Meat Lovers",
+      description: "Pepperoni, salami, ham, and ground beef",
+      image: "/images/_MG_4472.jpg",
       popular: true,
     },
     {
-      name: "Mediterranean",
-      description: "Clam, shrimp, red pepper, red onions, fresh garlic",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
+      name: "Build Your Own",
+      description: "Start with cheese and add your favorite toppings",
+      image: "/images/_MG_4490.jpg",
       popular: false,
-    },
-    {
-      name: "House Special",
-      description: "Grilled chicken, spinach, fresh garlic, tomato, artichoke",
-      prices: { small: 12.99, medium: 15.99, large: 19.99 },
-      popular: true,
     },
   ],
-  customPizza: {
-    cheese: { small: 10.99, medium: 14.99, large: 16.99 },
-    veggieToppings: { small: 1.99, medium: 2.49, large: 3.49 },
-    meatToppings: { small: 2.49, medium: 2.99, large: 3.99 },
-  },
-  bakedSubs: [
-    { name: "Gourmet Sub", price: 11.99 },
-    { name: "Beef Steak Sub", price: 11.99 },
-    { name: "Grilled Chicken Sub", price: 11.99 },
-  ],
-  pastas: [
-    { name: "Lasagna", small: 8.99, large: 14.99 },
-    { name: "Spaghetti", small: 8.99, large: 14.99 },
-    { name: "Fettuccine Alfredo", small: 8.99, large: 14.99 },
-    { name: "Tortellini", small: 8.99, large: 14.99 },
-    { name: "Ravioli", small: 8.99, large: 14.99 },
-    { name: "Chicken Parmesan", small: 8.99, large: 14.99 },
+  appetizers: [
+    {
+      name: "Spanakopita",
+      description: "Crispy phyllo pastry triangles filled with spinach and feta, served with tzatziki",
+      image: "/images/IMG_3253.jpg",
+    },
+    {
+      name: "Garlic Bread",
+      description: "Fresh baked bread with garlic butter",
+      image: null,
+    },
+    {
+      name: "Chicken Wings",
+      description: "Crispy wings with your choice of sauce",
+      image: null,
+    },
   ],
   salads: [
-    { name: "Tossed", small: 8.99, large: 10.99 },
-    { name: "Caesar", small: 8.99, large: 10.99 },
-    { name: "Greek", small: 8.99, large: 10.99 },
-  ],
-  extras: [
-    { name: "Butter Chicken", lunch: 12.99, dinner: 16.99 },
-    { name: "Beef Curry", lunch: 14.99, dinner: 16.99 },
-    { name: "Chicken Wings (10pc)", price: 12.99 },
+    {
+      name: "Greek Salad",
+      description: "Fresh romaine, cucumbers, tomatoes, olives, feta cheese, served with garlic bread",
+      image: "/images/IMG_3247.jpg",
+    },
+    {
+      name: "Caesar Salad",
+      description: "Romaine lettuce, parmesan, croutons, caesar dressing, served with garlic bread",
+      image: "/images/image2.JPG",
+    },
+    {
+      name: "Tossed Salad",
+      description: "Mixed greens with fresh vegetables, served with garlic bread",
+      image: "/images/image3.JPG",
+    },
   ],
 };
 
-type Category = "pizzas" | "subs" | "pastas" | "salads" | "extras";
+type Category = "pizzas" | "appetizers" | "salads";
 
 export default function Menu({ onOrderPizza }: MenuProps) {
   const [activeCategory, setActiveCategory] = useState<Category>("pizzas");
 
   const categories: { key: Category; label: string }[] = [
     { key: "pizzas", label: "Pizzas" },
-    { key: "subs", label: "Baked Subs" },
-    { key: "pastas", label: "Pastas" },
+    { key: "appetizers", label: "Appetizers" },
     { key: "salads", label: "Salads" },
-    { key: "extras", label: "Extras" },
   ];
 
   return (
@@ -110,10 +103,10 @@ export default function Menu({ onOrderPizza }: MenuProps) {
             Our Menu
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D1810] mb-4">
-            Delicious Options for Everyone
+            Legendary Square-Cut Pizza
           </h2>
           <p className="text-[#8B4513] text-lg max-w-2xl mx-auto">
-            From our signature pizzas to homemade pastas, we have something for every taste.
+            Thick-crust, Detroit-style pizzas made fresh daily. Gluten-free option available (medium size).
           </p>
         </div>
 
@@ -139,21 +132,20 @@ export default function Menu({ onOrderPizza }: MenuProps) {
           {/* Pizzas */}
           {activeCategory === "pizzas" && (
             <div>
-              {/* Signature Pizzas */}
-              <h3 className="text-2xl font-bold text-[#2D1810] mb-6">
-                Signature Pizzas
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-                {menuData.signaturePizzas.map((pizza) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {menuData.pizzas.map((pizza) => (
                   <div
                     key={pizza.name}
                     className="menu-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
                   >
-                    {/* Pizza image placeholder */}
-                    <div className="relative h-40 bg-gradient-to-br from-[#FCBF49] to-[#F77F00]">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-6xl">🍕</span>
-                      </div>
+                    {/* Pizza image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={pizza.image}
+                        alt={pizza.name}
+                        fill
+                        className="object-cover"
+                      />
                       {pizza.popular && (
                         <div className="absolute top-3 right-3 px-3 py-1 bg-[#E63946] text-white text-xs font-bold rounded-full">
                           POPULAR
@@ -161,114 +153,91 @@ export default function Menu({ onOrderPizza }: MenuProps) {
                       )}
                     </div>
 
-                    <div className="p-4">
-                      <h4 className="text-lg font-bold text-[#2D1810] mb-2">
+                    <div className="p-5">
+                      <h4 className="text-xl font-bold text-[#2D1810] mb-2">
                         {pizza.name}
                       </h4>
-                      <p className="text-sm text-gray-600 mb-4 min-h-[40px]">
+                      <p className="text-sm text-gray-600 mb-4 min-h-[48px]">
                         {pizza.description}
                       </p>
 
-                      <div className="flex justify-between items-center text-sm text-[#8B4513] mb-4">
-                        <span>S: ${pizza.prices.small}</span>
-                        <span>M: ${pizza.prices.medium}</span>
-                        <span>L: ${pizza.prices.large}</span>
-                      </div>
-
-                      <button
-                        onClick={() => onOrderPizza(pizza.name)}
+                      <a
+                        href="tel:604-858-7766"
                         className="w-full btn-primary flex items-center justify-center gap-2 text-sm"
                       >
-                        Order Now
-                        <ChevronRight size={16} />
-                      </button>
+                        <Phone size={16} />
+                        Call to Order
+                      </a>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Custom Pizza */}
+              {/* Combo Dinner Info */}
               <div className="bg-[#FFF5E6] rounded-2xl p-6 md:p-8">
                 <h3 className="text-2xl font-bold text-[#2D1810] mb-4">
-                  Build Your Own Pizza
+                  Combo Dinners Available
                 </h3>
-                <p className="text-[#8B4513] mb-6">
-                  Start with cheese and add your favorite toppings!
+                <p className="text-[#8B4513] mb-4">
+                  Ask about our combo dinners - served with your choice of salad and garlic bread!
                 </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Cheese Base</h4>
-                    <div className="text-sm text-gray-600">
-                      <p>Small: ${menuData.customPizza.cheese.small}</p>
-                      <p>Medium: ${menuData.customPizza.cheese.medium}</p>
-                      <p>Large: ${menuData.customPizza.cheese.large}</p>
-                    </div>
+                <div className="flex flex-wrap gap-4">
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
+                    <h4 className="font-bold text-[#2D1810] mb-2">Full Menu Hours</h4>
+                    <p className="text-sm text-gray-600">Daily 3:00 PM - 7:20 PM</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Veggie Toppings</h4>
-                    <div className="text-sm text-gray-600">
-                      <p>Small: +${menuData.customPizza.veggieToppings.small}</p>
-                      <p>Medium: +${menuData.customPizza.veggieToppings.medium}</p>
-                      <p>Large: +${menuData.customPizza.veggieToppings.large}</p>
-                    </div>
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
+                    <h4 className="font-bold text-[#2D1810] mb-2">Gluten-Free Option</h4>
+                    <p className="text-sm text-gray-600">Available in medium size</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Meat Toppings</h4>
-                    <div className="text-sm text-gray-600">
-                      <p>Small: +${menuData.customPizza.meatToppings.small}</p>
-                      <p>Medium: +${menuData.customPizza.meatToppings.medium}</p>
-                      <p>Large: +${menuData.customPizza.meatToppings.large}</p>
-                    </div>
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
+                    <h4 className="font-bold text-[#2D1810] mb-2">Licensed</h4>
+                    <p className="text-sm text-gray-600">Beer and wine available</p>
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Baked Subs */}
-          {activeCategory === "subs" && (
+          {/* Appetizers */}
+          {activeCategory === "appetizers" && (
             <div className="grid md:grid-cols-3 gap-6">
-              {menuData.bakedSubs.map((sub) => (
+              {menuData.appetizers.map((item) => (
                 <div
-                  key={sub.name}
-                  className="menu-card bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
+                  key={item.name}
+                  className="menu-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
                 >
-                  <div className="text-5xl mb-4 text-center">🥖</div>
-                  <h4 className="text-xl font-bold text-[#2D1810] text-center mb-2">
-                    {sub.name}
-                  </h4>
-                  <p className="text-2xl font-bold text-[#E63946] text-center mb-4">
-                    ${sub.price}
-                  </p>
-                  <button className="w-full btn-secondary">Add to Order</button>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Pastas */}
-          {activeCategory === "pastas" && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {menuData.pastas.map((pasta) => (
-                <div
-                  key={pasta.name}
-                  className="menu-card bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
-                >
-                  <div className="text-5xl mb-4 text-center">🍝</div>
-                  <h4 className="text-xl font-bold text-[#2D1810] text-center mb-4">
-                    {pasta.name}
-                  </h4>
-                  <div className="flex justify-center gap-8 text-[#8B4513] mb-4">
-                    <div className="text-center">
-                      <p className="text-sm">Small</p>
-                      <p className="text-lg font-bold">${pasta.small}</p>
+                  {item.image ? (
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <div className="text-center">
-                      <p className="text-sm">Large</p>
-                      <p className="text-lg font-bold">${pasta.large}</p>
+                  ) : (
+                    <div className="h-48 bg-gradient-to-br from-[#FCBF49] to-[#F77F00] flex items-center justify-center">
+                      <span className="text-6xl">
+                        {item.name === "Garlic Bread" ? "🍞" : "🍗"}
+                      </span>
                     </div>
+                  )}
+                  <div className="p-5">
+                    <h4 className="text-xl font-bold text-[#2D1810] mb-2">
+                      {item.name}
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {item.description}
+                    </p>
+                    <a
+                      href="tel:604-858-7766"
+                      className="w-full btn-secondary flex items-center justify-center gap-2"
+                    >
+                      <Phone size={16} />
+                      Call to Order
+                    </a>
                   </div>
-                  <button className="w-full btn-secondary">Add to Order</button>
                 </div>
               ))}
             </div>
@@ -280,63 +249,53 @@ export default function Menu({ onOrderPizza }: MenuProps) {
               {menuData.salads.map((salad) => (
                 <div
                   key={salad.name}
-                  className="menu-card bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
+                  className="menu-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
                 >
-                  <div className="text-5xl mb-4 text-center">🥗</div>
-                  <h4 className="text-xl font-bold text-[#2D1810] text-center mb-4">
-                    {salad.name} Salad
-                  </h4>
-                  <div className="flex justify-center gap-8 text-[#8B4513] mb-4">
-                    <div className="text-center">
-                      <p className="text-sm">Small</p>
-                      <p className="text-lg font-bold">${salad.small}</p>
+                  {salad.image ? (
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={salad.image}
+                        alt={salad.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <div className="text-center">
-                      <p className="text-sm">Large</p>
-                      <p className="text-lg font-bold">${salad.large}</p>
-                    </div>
-                  </div>
-                  <button className="w-full btn-secondary">Add to Order</button>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Extras */}
-          {activeCategory === "extras" && (
-            <div className="grid md:grid-cols-3 gap-6">
-              {menuData.extras.map((item) => (
-                <div
-                  key={item.name}
-                  className="menu-card bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
-                >
-                  <div className="text-5xl mb-4 text-center">
-                    {item.name.includes("Chicken Wings") ? "🍗" : "🍛"}
-                  </div>
-                  <h4 className="text-xl font-bold text-[#2D1810] text-center mb-4">
-                    {item.name}
-                  </h4>
-                  {"price" in item ? (
-                    <p className="text-2xl font-bold text-[#E63946] text-center mb-4">
-                      ${item.price}
-                    </p>
                   ) : (
-                    <div className="flex justify-center gap-8 text-[#8B4513] mb-4">
-                      <div className="text-center">
-                        <p className="text-sm">Lunch</p>
-                        <p className="text-lg font-bold">${item.lunch}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-sm">Dinner</p>
-                        <p className="text-lg font-bold">${item.dinner}</p>
-                      </div>
+                    <div className="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                      <span className="text-6xl">🥗</span>
                     </div>
                   )}
-                  <button className="w-full btn-secondary">Add to Order</button>
+                  <div className="p-5">
+                    <h4 className="text-xl font-bold text-[#2D1810] mb-2">
+                      {salad.name}
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {salad.description}
+                    </p>
+                    <a
+                      href="tel:604-858-7766"
+                      className="w-full btn-secondary flex items-center justify-center gap-2"
+                    >
+                      <Phone size={16} />
+                      Call to Order
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
           )}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <p className="text-[#8B4513] mb-4">Ready to order?</p>
+          <a
+            href="tel:604-858-7766"
+            className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2"
+          >
+            <Phone size={20} />
+            Call (604) 858-7766
+          </a>
         </div>
       </div>
     </section>
