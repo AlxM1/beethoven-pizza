@@ -510,14 +510,14 @@ export default function MenuPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {menuData.comboDinners.map((combo) => (
                 <div
                   key={combo.name}
                   className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center"
                 >
                   <h3 className="text-xl font-bold mb-2">{combo.name}</h3>
-                  <p className="text-white/80 mb-4">{combo.description}</p>
+                  <p className="text-white/80 text-sm mb-4">{combo.description}</p>
                   <p className="text-3xl font-bold">{combo.price}</p>
                 </div>
               ))}
