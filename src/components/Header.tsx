@@ -58,17 +58,14 @@ export default function Header({ onOrderClick }: HeaderProps) {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full pizza-gradient flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">B</span>
-              </div>
-              <div>
-                <h1 className="text-xl md:text-2xl font-bold text-[#2C3E50]">
-                  J. Beethoven&apos;s Pizza
-                </h1>
-                <p className="text-xs text-[#4ECDC4] hidden sm:block">
-                  Since 1979 - Cultus Lake, BC
-                </p>
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="J. Beethoven's Pizza"
+                width={140}
+                height={60}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}

@@ -1,7 +1,8 @@
 "use client";
 
-import { Phone } from "lucide-react";
+import { Phone, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const menuData = {
   pizzaClassics: [
