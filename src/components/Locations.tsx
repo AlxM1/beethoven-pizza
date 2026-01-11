@@ -2,27 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Phone, MapPin, Clock, Navigation } from "lucide-react";
+import Image from "next/image";
 
-const locations = [
-  {
-    id: "cultus-lake",
-    name: "Cultus Lake",
-    address: "4125 Columbia Valley Highway, Cultus Lake, BC",
-    phone: "604-858-7766",
-    hours: "Daily: 12 PM - 8 PM",
-    lat: 49.0614,
-    lng: -121.9854,
-  },
-  {
-    id: "burnaby",
-    name: "Burnaby",
-    address: "#4 - 2909 Bainbridge Avenue, Burnaby, BC",
-    phone: "604-421-7735",
-    hours: "Mon-Fri: 11 AM - 8 PM | Sat: 4 PM - 8 PM | Sun: Closed",
-    lat: 49.2622,
-    lng: -122.9621,
-  },
-];
+const location = {
+  name: "Cultus Lake",
+  address: "4125 Columbia Valley Highway, Cultus Lake, BC V2R 5B6",
+  phone: "(604) 858-7766",
+  hours: "Daily: 12:00 PM - 8:00 PM",
+  fullMenuHours: "Full Menu: 3:00 PM - 7:20 PM",
+  lat: 49.0614,
+  lng: -121.9854,
+};
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyAjvjmbklpdojLOo3d7UXH8u6THrCRV2C8";
 
@@ -58,147 +48,170 @@ export default function Locations() {
     if (!mapLoaded || !mapRef.current || !window.google) return;
 
     try {
-      // Center between both locations
-      const center = {
-        lat: (locations[0].lat + locations[1].lat) / 2,
-        lng: (locations[0].lng + locations[1].lng) / 2,
-      };
-
       const map = new google.maps.Map(mapRef.current, {
-        center,
-        zoom: 9,
+        center: { lat: location.lat, lng: location.lng },
+        zoom: 15,
         mapId: "beethoven-pizza-map",
       });
 
       mapInstanceRef.current = map;
 
-      // Add markers for each location
-      locations.forEach((location) => {
-        // Create custom marker content
-        const markerDiv = document.createElement("div");
-        markerDiv.innerHTML = `
-          <div style="
-            background: linear-gradient(135deg, #E63946 0%, #F77F00 100%);
-            padding: 8px 12px;
-            border-radius: 20px;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
-            white-space: nowrap;
-            cursor: pointer;
-          ">
-            ${location.name}
-          </div>
-        `;
+      // Create custom marker content
+      const markerDiv = document.createElement("div");
+      markerDiv.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, #E63946 0%, #F77F00 100%);
+          padding: 10px 16px;
+          border-radius: 20px;
+          color: white;
+          font-weight: bold;
+          box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+          white-space: nowrap;
+          cursor: pointer;
+          font-size: 14px;
+        ">
+          J. Beethoven's Pizza
+        </div>
+      `;
 
-        // Try using AdvancedMarkerElement if available, fallback to regular marker
-        if (google.maps.marker && google.maps.marker.AdvancedMarkerElement) {
-          new google.maps.marker.AdvancedMarkerElement({
-            map,
-            position: { lat: location.lat, lng: location.lng },
-            content: markerDiv,
-            title: location.name,
-          });
-        } else {
-          new google.maps.Marker({
-            map,
-            position: { lat: location.lat, lng: location.lng },
-            title: location.name,
-            label: {
-              text: location.name,
-              color: "#E63946",
-              fontWeight: "bold",
-            },
-          });
-        }
-      });
+      // Try using AdvancedMarkerElement if available, fallback to regular marker
+      if (google.maps.marker && google.maps.marker.AdvancedMarkerElement) {
+        new google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: { lat: location.lat, lng: location.lng },
+          content: markerDiv,
+          title: location.name,
+        });
+      } else {
+        new google.maps.Marker({
+          map,
+          position: { lat: location.lat, lng: location.lng },
+          title: location.name,
+          label: {
+            text: "J. Beethoven's Pizza",
+            color: "#E63946",
+            fontWeight: "bold",
+          },
+        });
+      }
     } catch (error) {
       console.error("Error initializing map:", error);
     }
   }, [mapLoaded]);
 
-  const focusLocation = (lat: number, lng: number) => {
-    if (mapInstanceRef.current) {
-      mapInstanceRef.current.panTo({ lat, lng });
-      mapInstanceRef.current.setZoom(15);
-    }
-  };
-
   return (
-    <section id="locations" className="section-padding pizza-gradient-subtle">
+    <section id="location" className="section-padding pizza-gradient-subtle">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 bg-white rounded-full text-[#E63946] font-semibold text-sm mb-4">
-            Find Us
+            Visit Us
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D1810] mb-4">
-            Two Locations to Serve You
+            Find Us at Cultus Lake
           </h2>
           <p className="text-[#8B4513] text-lg max-w-2xl mx-auto">
-            Visit us at Cultus Lake or Burnaby for the best pizza experience in BC!
+            Located on Columbia Valley Highway, just minutes from the lake!
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Location cards */}
+          {/* Location card */}
           <div className="space-y-6">
-            {locations.map((location) => (
-              <div
-                key={location.id}
-                className="bg-white rounded-2xl shadow-lg p-6 md:p-8 menu-card"
-              >
-                <div className="flex items-start justify-between mb-4">
+            {/* Main info card */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/images/_MG_4421.jpg"
+                    alt="J. Beethoven's Pizza exterior"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-[#2D1810] mb-2">
+                    J. Beethoven&apos;s Pizza
+                  </h3>
+                  <p className="text-[#E63946] font-medium">Cultus Lake, BC</p>
+                  <p className="text-sm text-[#8B4513]">Since 1979</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-2xl font-bold text-[#2D1810] mb-2">
-                      {location.name}
-                    </h3>
-                    <div className="flex items-center gap-2 text-[#8B4513]">
-                      <MapPin size={18} className="text-[#E63946]" />
-                      <span>{location.address}</span>
-                    </div>
-                  </div>
-                  <div className="w-12 h-12 rounded-full pizza-gradient flex items-center justify-center text-white text-xl">
-                    <span>P</span>
+                    <p className="font-medium text-[#2D1810]">Address</p>
+                    <p className="text-[#8B4513]">{location.address}</p>
                   </div>
                 </div>
 
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3">
-                    <Phone size={18} className="text-[#E63946]" />
+                <div className="flex items-start gap-3">
+                  <Phone size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-[#2D1810]">Phone</p>
                     <a
-                      href={`tel:${location.phone}`}
-                      className="text-[#2D1810] font-semibold hover:text-[#E63946] transition-colors"
+                      href="tel:604-858-7766"
+                      className="text-[#E63946] font-semibold hover:underline text-lg"
                     >
                       {location.phone}
                     </a>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Clock size={18} className="text-[#E63946] mt-0.5" />
-                    <span className="text-[#8B4513]">{location.hours}</span>
-                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={() => focusLocation(location.lat, location.lng)}
-                    className="flex-1 btn-secondary flex items-center justify-center gap-2"
-                  >
-                    <Navigation size={18} />
-                    View on Map
-                  </button>
-                  <a
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 btn-primary flex items-center justify-center gap-2"
-                  >
-                    <MapPin size={18} />
-                    Get Directions
-                  </a>
+                <div className="flex items-start gap-3">
+                  <Clock size={20} className="text-[#E63946] mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-[#2D1810]">Hours</p>
+                    <p className="text-[#8B4513]">{location.hours}</p>
+                    <p className="text-sm text-[#8B4513]">{location.fullMenuHours}</p>
+                  </div>
                 </div>
               </div>
-            ))}
+
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 btn-primary flex items-center justify-center gap-2"
+                >
+                  <Navigation size={18} />
+                  Get Directions
+                </a>
+                <a
+                  href="tel:604-858-7766"
+                  className="flex-1 btn-secondary flex items-center justify-center gap-2"
+                >
+                  <Phone size={18} />
+                  Call Now
+                </a>
+              </div>
+            </div>
+
+            {/* Additional info */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h4 className="font-bold text-[#2D1810] mb-4">Good to Know</h4>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">&#10003;</span>
+                  <span className="text-[#8B4513]">Patio seating available</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">&#10003;</span>
+                  <span className="text-[#8B4513]">Gluten-free options</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">&#10003;</span>
+                  <span className="text-[#8B4513]">Beer & wine</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">&#10003;</span>
+                  <span className="text-[#8B4513]">Takeout available</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Map */}
@@ -207,7 +220,7 @@ export default function Locations() {
               {!mapLoaded && (
                 <div className="w-full h-full flex items-center justify-center bg-[#FFF5E6]">
                   <div className="text-center">
-                    <div className="text-4xl mb-4 animate-bounce-gentle">📍</div>
+                    <div className="text-4xl mb-4 animate-bounce">📍</div>
                     <p className="text-[#8B4513]">Loading map...</p>
                   </div>
                 </div>
