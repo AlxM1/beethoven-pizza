@@ -90,23 +90,22 @@ export default function MenuPage() {
     <main className="min-h-screen bg-[#FFF9F5]">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="flex items-center gap-2 text-[#2C3E50] hover:text-[#FF6B6B] transition-colors font-medium"
+              className="flex items-center gap-2 text-[#2C3E50] hover:text-[#FF6B6B] transition-colors font-medium bg-[#FFF5EE] px-3 py-2 rounded-lg"
             >
               <ArrowLeft size={20} />
-              <span className="hidden sm:inline">Back to Home</span>
+              <span className="hidden sm:inline">Home</span>
             </Link>
-            <span className="text-gray-300 hidden sm:inline">|</span>
             <Link href="/" className="flex items-center">
               <Image
                 src="/images/logo.png"
                 alt="J. Beethoven's Pizza"
-                width={120}
-                height={50}
-                className="h-10 w-auto object-contain"
+                width={160}
+                height={70}
+                className="h-14 md:h-16 w-auto object-contain"
               />
             </Link>
           </div>

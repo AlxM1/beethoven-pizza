@@ -61,9 +61,9 @@ export default function Header({ onOrderClick }: HeaderProps) {
               <Image
                 src="/images/logo.png"
                 alt="J. Beethoven's Pizza"
-                width={140}
-                height={60}
-                className="h-12 w-auto object-contain"
+                width={180}
+                height={80}
+                className="h-16 md:h-20 w-auto object-contain"
                 priority
               />
             </Link>
