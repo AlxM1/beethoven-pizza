@@ -142,31 +142,31 @@ export default function MenuPage() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-[#2C3E50] text-white px-6 py-3 grid grid-cols-4 gap-4 text-sm font-semibold">
+            <div className="bg-[#2C3E50] text-white px-3 md:px-6 py-3 grid grid-cols-4 gap-2 md:gap-4 text-xs md:text-sm font-semibold">
               <span className="col-span-1">Pizza</span>
               <span className="text-center">Small</span>
-              <span className="text-center">Medium</span>
+              <span className="text-center">Med</span>
               <span className="text-center">Large</span>
             </div>
             {menuData.pizzaClassics.map((pizza, index) => (
               <div
                 key={pizza.name}
-                className={`px-6 py-4 grid grid-cols-4 gap-4 items-center ${
+                className={`px-3 md:px-6 py-3 md:py-4 grid grid-cols-4 gap-2 md:gap-4 items-center ${
                   index % 2 === 0 ? "bg-white" : "bg-[#FFF5EE]"
                 } ${pizza.signature ? "border-l-4 border-[#FF6B6B]" : ""}`}
               >
                 <div className="col-span-1">
-                  <h3 className="font-bold text-[#2C3E50] flex items-center gap-2">
-                    {pizza.name}
+                  <h3 className="font-bold text-[#2C3E50] text-sm md:text-base flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                    <span className="break-words">{pizza.name}</span>
                     {pizza.signature && (
-                      <span className="text-xs bg-[#FF6B6B] text-white px-2 py-0.5 rounded-full">SIGNATURE</span>
+                      <span className="text-xs bg-[#FF6B6B] text-white px-2 py-0.5 rounded-full whitespace-nowrap">SIG</span>
                     )}
                   </h3>
-                  <p className="text-sm text-[#2C3E50]/60">{pizza.description}</p>
+                  <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{pizza.description}</p>
                 </div>
-                <span className="text-center font-semibold text-[#FF6B6B]">{pizza.small}</span>
-                <span className="text-center font-semibold text-[#FF6B6B]">{pizza.medium}</span>
-                <span className="text-center font-semibold text-[#FF6B6B]">{pizza.large}</span>
+                <span className="text-center font-semibold text-[#FF6B6B] text-xs md:text-base">{pizza.small}</span>
+                <span className="text-center font-semibold text-[#FF6B6B] text-xs md:text-base">{pizza.medium}</span>
+                <span className="text-center font-semibold text-[#FF6B6B] text-xs md:text-base">{pizza.large}</span>
               </div>
             ))}
           </div>

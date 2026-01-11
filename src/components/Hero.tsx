@@ -86,24 +86,24 @@ export default function Hero({ currentStep, onOrderClick }: HeroProps) {
       {/* Info Bar - Summer lakeside colors */}
       <div className="relative bg-gradient-to-r from-[#2C3E50] to-[#34495E] backdrop-blur-sm py-4">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-white">
-            <div className="flex items-center gap-3">
-              <MapPin size={20} className="text-[#4ECDC4]" />
-              <span>4125 Columbia Valley Highway, Cultus Lake, BC V2R 5B6</span>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-white text-sm md:text-base">
+            <div className="flex items-center gap-2">
+              <MapPin size={18} className="text-[#4ECDC4] flex-shrink-0" />
+              <span className="text-sm md:text-base">4125 Columbia Valley Hwy, Cultus Lake, BC</span>
             </div>
-            <div className="flex items-center gap-3">
-              <Clock size={20} className="text-[#4ECDC4]" />
-              <div>
-                <span>Daily 12:00 PM - 8:00 PM</span>
-                <span className="text-[#B8E8E4] text-sm ml-2">(Full Menu 3:00 PM - 7:20 PM)</span>
+            <div className="flex items-center gap-2">
+              <Clock size={18} className="text-[#4ECDC4] flex-shrink-0" />
+              <div className="flex flex-col sm:flex-row sm:gap-2">
+                <span className="text-sm md:text-base">Daily 12-8 PM</span>
+                <span className="text-[#B8E8E4] text-xs md:text-sm">(Full Menu 3-7:20 PM)</span>
               </div>
             </div>
             <a
               href="tel:604-858-7766"
               className="flex items-center gap-2 text-[#FFE66D] hover:text-white transition-colors font-semibold"
             >
-              <Phone size={20} />
-              <span>(604) 858-7766</span>
+              <Phone size={18} className="flex-shrink-0" />
+              <span className="text-sm md:text-base">(604) 858-7766</span>
             </a>
           </div>
         </div>
