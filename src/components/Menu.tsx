@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface MenuProps {
   onOrderPizza: (pizzaName: string) => void;
@@ -99,15 +100,21 @@ export default function Menu({ onOrderPizza }: MenuProps) {
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-[#FFF5E6] rounded-full text-[#E63946] font-semibold text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-[#4ECDC4]/20 rounded-full text-[#4ECDC4] font-semibold text-sm mb-4">
             Our Menu
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D1810] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C3E50] mb-4">
             Legendary Square-Cut Pizza
           </h2>
-          <p className="text-[#8B4513] text-lg max-w-2xl mx-auto">
+          <p className="text-[#2C3E50]/70 text-lg max-w-2xl mx-auto mb-4">
             Thick-crust, Detroit-style pizzas made fresh daily. Gluten-free option available (medium size).
           </p>
+          <Link
+            href="/menu"
+            className="text-[#FF6B6B] hover:text-[#FF9A5C] font-semibold transition-colors underline"
+          >
+            View Full Menu with Prices &rarr;
+          </Link>
         </div>
 
         {/* Category tabs */}
@@ -119,7 +126,7 @@ export default function Menu({ onOrderPizza }: MenuProps) {
               className={`px-6 py-3 rounded-full font-semibold transition-all ${
                 activeCategory === cat.key
                   ? "pizza-gradient text-white shadow-lg"
-                  : "bg-[#FFF5E6] text-[#2D1810] hover:bg-[#FFECD2]"
+                  : "bg-[#B8E8E4]/30 text-[#2C3E50] hover:bg-[#B8E8E4]/50"
               }`}
             >
               {cat.label}
@@ -147,17 +154,17 @@ export default function Menu({ onOrderPizza }: MenuProps) {
                         className="object-cover"
                       />
                       {pizza.popular && (
-                        <div className="absolute top-3 right-3 px-3 py-1 bg-[#E63946] text-white text-xs font-bold rounded-full">
+                        <div className="absolute top-3 right-3 px-3 py-1 bg-[#FF6B6B] text-white text-xs font-bold rounded-full">
                           POPULAR
                         </div>
                       )}
                     </div>
 
                     <div className="p-5">
-                      <h4 className="text-xl font-bold text-[#2D1810] mb-2">
+                      <h4 className="text-xl font-bold text-[#2C3E50] mb-2">
                         {pizza.name}
                       </h4>
-                      <p className="text-sm text-gray-600 mb-4 min-h-[48px]">
+                      <p className="text-sm text-[#2C3E50]/70 mb-4 min-h-[48px]">
                         {pizza.description}
                       </p>
 
@@ -174,25 +181,25 @@ export default function Menu({ onOrderPizza }: MenuProps) {
               </div>
 
               {/* Combo Dinner Info */}
-              <div className="bg-[#FFF5E6] rounded-2xl p-6 md:p-8">
-                <h3 className="text-2xl font-bold text-[#2D1810] mb-4">
+              <div className="bg-gradient-to-br from-[#4ECDC4]/10 to-[#B8E8E4]/30 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-bold text-[#2C3E50] mb-4">
                   Combo Dinners Available
                 </h3>
-                <p className="text-[#8B4513] mb-4">
+                <p className="text-[#2C3E50]/70 mb-4">
                   Ask about our combo dinners - served with your choice of salad and garlic bread!
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Full Menu Hours</h4>
-                    <p className="text-sm text-gray-600">Daily 3:00 PM - 7:20 PM</p>
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px] shadow-sm">
+                    <h4 className="font-bold text-[#2C3E50] mb-2">Full Menu Hours</h4>
+                    <p className="text-sm text-[#2C3E50]/60">Daily 3:00 PM - 7:20 PM</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Gluten-Free Option</h4>
-                    <p className="text-sm text-gray-600">Available in medium size</p>
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px] shadow-sm">
+                    <h4 className="font-bold text-[#2C3E50] mb-2">Gluten-Free Option</h4>
+                    <p className="text-sm text-[#2C3E50]/60">Available in medium size</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px]">
-                    <h4 className="font-bold text-[#2D1810] mb-2">Licensed</h4>
-                    <p className="text-sm text-gray-600">Beer and wine available</p>
+                  <div className="bg-white rounded-xl p-4 flex-1 min-w-[200px] shadow-sm">
+                    <h4 className="font-bold text-[#2C3E50] mb-2">Licensed</h4>
+                    <p className="text-sm text-[#2C3E50]/60">Beer and wine available</p>
                   </div>
                 </div>
               </div>
@@ -217,17 +224,17 @@ export default function Menu({ onOrderPizza }: MenuProps) {
                       />
                     </div>
                   ) : (
-                    <div className="h-48 bg-gradient-to-br from-[#FCBF49] to-[#F77F00] flex items-center justify-center">
+                    <div className="h-48 bg-gradient-to-br from-[#FFE66D] to-[#FF9A5C] flex items-center justify-center">
                       <span className="text-6xl">
                         {item.name === "Garlic Bread" ? "🍞" : "🍗"}
                       </span>
                     </div>
                   )}
                   <div className="p-5">
-                    <h4 className="text-xl font-bold text-[#2D1810] mb-2">
+                    <h4 className="text-xl font-bold text-[#2C3E50] mb-2">
                       {item.name}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-[#2C3E50]/70 mb-4">
                       {item.description}
                     </p>
                     <a
@@ -261,15 +268,15 @@ export default function Menu({ onOrderPizza }: MenuProps) {
                       />
                     </div>
                   ) : (
-                    <div className="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                    <div className="h-48 bg-gradient-to-br from-[#4ECDC4] to-[#45B7AF] flex items-center justify-center">
                       <span className="text-6xl">🥗</span>
                     </div>
                   )}
                   <div className="p-5">
-                    <h4 className="text-xl font-bold text-[#2D1810] mb-2">
+                    <h4 className="text-xl font-bold text-[#2C3E50] mb-2">
                       {salad.name}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-[#2C3E50]/70 mb-4">
                       {salad.description}
                     </p>
                     <a
@@ -288,7 +295,7 @@ export default function Menu({ onOrderPizza }: MenuProps) {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <p className="text-[#8B4513] mb-4">Ready to order?</p>
+          <p className="text-[#2C3E50]/70 mb-4">Ready to order?</p>
           <a
             href="tel:604-858-7766"
             className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2"

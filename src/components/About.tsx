@@ -21,26 +21,26 @@ export default function About() {
             {/* Established badge */}
             <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white rounded-2xl shadow-xl p-4 md:p-6">
               <div className="text-center">
-                <p className="text-[#E63946] font-bold text-3xl md:text-4xl">1979</p>
-                <p className="text-[#8B4513] text-sm font-medium">Established</p>
+                <p className="text-[#FF6B6B] font-bold text-3xl md:text-4xl">1979</p>
+                <p className="text-[#2C3E50]/70 text-sm font-medium">Established</p>
               </div>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#FCBF49] rounded-full opacity-20 blur-2xl" />
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#E63946] rounded-full opacity-20 blur-2xl" />
+            {/* Decorative elements - Summer lakeside colors */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[#FFE66D] rounded-full opacity-20 blur-2xl" />
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#4ECDC4] rounded-full opacity-20 blur-2xl" />
           </div>
 
           {/* Content side */}
           <div>
-            <span className="inline-block px-4 py-2 bg-[#FFF5E6] rounded-full text-[#E63946] font-semibold text-sm mb-4">
+            <span className="inline-block px-4 py-2 bg-[#4ECDC4]/20 rounded-full text-[#4ECDC4] font-semibold text-sm mb-4">
               Our Story
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2D1810] mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C3E50] mb-6">
               A Cultus Lake Tradition Since 1979
             </h2>
 
-            <div className="space-y-4 text-[#8B4513] text-lg">
+            <div className="space-y-4 text-[#2C3E50]/70 text-lg">
               <p>
                 For over 45 years, J. Beethoven&apos;s Pizza has been serving the Cultus Lake
                 community our legendary thick-crust, square-cut pizzas. What started as a
@@ -62,25 +62,25 @@ export default function About() {
 
             {/* Features */}
             <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="bg-[#FFF5E6] rounded-xl p-4">
+              <div className="bg-gradient-to-br from-[#FFF5EE] to-[#B8E8E4]/30 rounded-xl p-4">
                 <div className="text-3xl mb-2">🏆</div>
-                <h3 className="font-bold text-[#2D1810] mb-1">45+ Years</h3>
-                <p className="text-sm text-[#8B4513]">Serving Cultus Lake</p>
+                <h3 className="font-bold text-[#2C3E50] mb-1">45+ Years</h3>
+                <p className="text-sm text-[#2C3E50]/60">Serving Cultus Lake</p>
               </div>
-              <div className="bg-[#FFF5E6] rounded-xl p-4">
+              <div className="bg-gradient-to-br from-[#FFF5EE] to-[#B8E8E4]/30 rounded-xl p-4">
                 <div className="text-3xl mb-2">👨‍👩‍👧‍👦</div>
-                <h3 className="font-bold text-[#2D1810] mb-1">Family Owned</h3>
-                <p className="text-sm text-[#8B4513]">Local tradition</p>
+                <h3 className="font-bold text-[#2C3E50] mb-1">Family Owned</h3>
+                <p className="text-sm text-[#2C3E50]/60">Local tradition</p>
               </div>
-              <div className="bg-[#FFF5E6] rounded-xl p-4">
+              <div className="bg-gradient-to-br from-[#FFF5EE] to-[#B8E8E4]/30 rounded-xl p-4">
                 <div className="text-3xl mb-2">🍕</div>
-                <h3 className="font-bold text-[#2D1810] mb-1">Detroit Style</h3>
-                <p className="text-sm text-[#8B4513]">Thick crust, square cut</p>
+                <h3 className="font-bold text-[#2C3E50] mb-1">Detroit Style</h3>
+                <p className="text-sm text-[#2C3E50]/60">Thick crust, square cut</p>
               </div>
-              <div className="bg-[#FFF5E6] rounded-xl p-4">
+              <div className="bg-gradient-to-br from-[#FFF5EE] to-[#B8E8E4]/30 rounded-xl p-4">
                 <div className="text-3xl mb-2">🍺</div>
-                <h3 className="font-bold text-[#2D1810] mb-1">Licensed</h3>
-                <p className="text-sm text-[#8B4513]">Beer & wine available</p>
+                <h3 className="font-bold text-[#2C3E50] mb-1">Licensed</h3>
+                <p className="text-sm text-[#2C3E50]/60">Beer & wine available</p>
               </div>
             </div>
           </div>
