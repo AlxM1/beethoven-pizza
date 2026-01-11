@@ -48,9 +48,9 @@ export default function Home() {
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40">
         <a
           href="tel:604-858-7766"
-          className="w-full btn-primary text-lg py-4 shadow-2xl animate-pulse-glow flex items-center justify-center gap-2"
+          className="w-full btn-primary text-base md:text-lg py-3 md:py-4 shadow-2xl animate-pulse-glow flex items-center justify-center gap-2"
         >
-          <Phone size={20} />
+          <Phone size={18} className="md:w-5 md:h-5" />
           Call to Order
         </a>
       </div>
