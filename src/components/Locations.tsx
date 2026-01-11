@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Phone, MapPin, Clock, Navigation } from "lucide-react";
-import { Loader } from "@googlemaps/js-api-loader";
 
 const locations = [
   {
@@ -25,75 +24,98 @@ const locations = [
   },
 ];
 
+const GOOGLE_MAPS_API_KEY = "AIzaSyAjvjmbklpdojLOo3d7UXH8u6THrCRV2C8";
+
 export default function Locations() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
-    const initMap = async () => {
-      const loader = new Loader({
-        apiKey: "AIzaSyAjvjmbklpdojLOo3d7UXH8u6THrCRV2C8",
-        version: "weekly",
-      });
+    // Load Google Maps script dynamically
+    const loadGoogleMaps = () => {
+      if (typeof window !== "undefined" && !window.google) {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=marker&callback=initMap`;
+        script.async = true;
+        script.defer = true;
 
-      try {
-        const { Map } = await loader.importLibrary("maps");
-        const { AdvancedMarkerElement } = await loader.importLibrary("marker");
-
-        if (!mapRef.current) return;
-
-        // Center between both locations
-        const center = {
-          lat: (locations[0].lat + locations[1].lat) / 2,
-          lng: (locations[0].lng + locations[1].lng) / 2,
+        // Define the callback
+        (window as Window & { initMap?: () => void }).initMap = () => {
+          setMapLoaded(true);
         };
 
-        const map = new Map(mapRef.current, {
-          center,
-          zoom: 9,
-          mapId: "beethoven-pizza-map",
-          styles: [
-            {
-              featureType: "poi",
-              elementType: "labels",
-              stylers: [{ visibility: "off" }],
-            },
-          ],
-        });
-
-        mapInstanceRef.current = map;
-
-        // Add markers for each location
-        locations.forEach((location) => {
-          const markerContent = document.createElement("div");
-          markerContent.innerHTML = `
-            <div style="
-              background: linear-gradient(135deg, #E63946 0%, #F77F00 100%);
-              padding: 8px 12px;
-              border-radius: 20px;
-              color: white;
-              font-weight: bold;
-              box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
-              white-space: nowrap;
-            ">
-              ${location.name}
-            </div>
-          `;
-
-          new AdvancedMarkerElement({
-            map,
-            position: { lat: location.lat, lng: location.lng },
-            content: markerContent,
-            title: location.name,
-          });
-        });
-      } catch (error) {
-        console.error("Error loading Google Maps:", error);
+        document.head.appendChild(script);
+      } else if (window.google) {
+        setMapLoaded(true);
       }
     };
 
-    initMap();
+    loadGoogleMaps();
   }, []);
+
+  useEffect(() => {
+    if (!mapLoaded || !mapRef.current || !window.google) return;
+
+    try {
+      // Center between both locations
+      const center = {
+        lat: (locations[0].lat + locations[1].lat) / 2,
+        lng: (locations[0].lng + locations[1].lng) / 2,
+      };
+
+      const map = new google.maps.Map(mapRef.current, {
+        center,
+        zoom: 9,
+        mapId: "beethoven-pizza-map",
+      });
+
+      mapInstanceRef.current = map;
+
+      // Add markers for each location
+      locations.forEach((location) => {
+        // Create custom marker content
+        const markerDiv = document.createElement("div");
+        markerDiv.innerHTML = `
+          <div style="
+            background: linear-gradient(135deg, #E63946 0%, #F77F00 100%);
+            padding: 8px 12px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+            white-space: nowrap;
+            cursor: pointer;
+          ">
+            ${location.name}
+          </div>
+        `;
+
+        // Try using AdvancedMarkerElement if available, fallback to regular marker
+        if (google.maps.marker && google.maps.marker.AdvancedMarkerElement) {
+          new google.maps.marker.AdvancedMarkerElement({
+            map,
+            position: { lat: location.lat, lng: location.lng },
+            content: markerDiv,
+            title: location.name,
+          });
+        } else {
+          new google.maps.Marker({
+            map,
+            position: { lat: location.lat, lng: location.lng },
+            title: location.name,
+            label: {
+              text: location.name,
+              color: "#E63946",
+              fontWeight: "bold",
+            },
+          });
+        }
+      });
+    } catch (error) {
+      console.error("Error initializing map:", error);
+    }
+  }, [mapLoaded]);
 
   const focusLocation = (lat: number, lng: number) => {
     if (mapInstanceRef.current) {
@@ -137,7 +159,7 @@ export default function Locations() {
                     </div>
                   </div>
                   <div className="w-12 h-12 rounded-full pizza-gradient flex items-center justify-center text-white text-xl">
-                    🍕
+                    <span>P</span>
                   </div>
                 </div>
 
@@ -180,8 +202,17 @@ export default function Locations() {
           </div>
 
           {/* Map */}
-          <div className="h-[400px] lg:h-auto lg:min-h-[500px] rounded-2xl overflow-hidden shadow-lg">
-            <div ref={mapRef} className="w-full h-full" />
+          <div className="h-[400px] lg:h-auto lg:min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
+            <div ref={mapRef} className="w-full h-full">
+              {!mapLoaded && (
+                <div className="w-full h-full flex items-center justify-center bg-[#FFF5E6]">
+                  <div className="text-center">
+                    <div className="text-4xl mb-4 animate-bounce-gentle">📍</div>
+                    <p className="text-[#8B4513]">Loading map...</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
