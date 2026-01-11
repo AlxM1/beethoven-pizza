@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Check, ChevronRight, ChevronLeft, ShoppingCart, Phone, MapPin } from "lucide-react";
+import { X, Check, ChevronLeft, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -10,32 +11,24 @@ interface OrderModalProps {
 }
 
 const pizzas = [
-  { name: "New Yorker", description: "Italian sausage, tomato, green pepper, onion, fresh garlic" },
-  { name: "Hawaiian", description: "Ham, pineapple" },
-  { name: "Deluxe", description: "Ham, salami, green pepper, onion, tomato" },
-  { name: "Athenian (Veggie)", description: "Spinach, black olives, tomato, green pepper, onion, feta cheese" },
-  { name: "Olympian", description: "Ground beef, tomato, red onion, green pepper" },
-  { name: "Herculean (Meat Lovers)", description: "Pepperoni, salami, ground beef" },
-  { name: "Mediterranean", description: "Clam, shrimp, red pepper, red onions, fresh garlic" },
-  { name: "House Special", description: "Grilled chicken, spinach, fresh garlic, tomato, artichoke" },
+  { name: "Beethoven's Special", description: "Our signature loaded pizza with salami rings", image: "/images/Beethoven's Special.JPEG" },
+  { name: "Pepperoni", description: "Classic cup-and-char pepperoni", image: "/images/pepperoni.JPEG" },
+  { name: "Hawaiian", description: "Ham and pineapple", image: "/images/_MG_4486.jpg" },
+  { name: "Vegetarian", description: "Black olives, tomatoes, green peppers, onions, feta", image: "/images/image6.JPG" },
+  { name: "Meat Lovers", description: "Pepperoni, salami, ham, ground beef", image: "/images/_MG_4472.jpg" },
+  { name: "Build Your Own", description: "Start with cheese and add toppings", image: "/images/_MG_4490.jpg" },
 ];
 
 const sizes = [
-  { name: "Small", price: 12.99, servings: "1-2 people" },
-  { name: "Medium", price: 15.99, servings: "2-3 people" },
-  { name: "Large", price: 19.99, servings: "3-4 people" },
-];
-
-const locations = [
-  { name: "Cultus Lake", phone: "604-858-7766", address: "4125 Columbia Valley Highway" },
-  { name: "Burnaby", phone: "604-421-7735", address: "#4 - 2909 Bainbridge Avenue" },
+  { name: "Small", servings: "6 slices" },
+  { name: "Medium", servings: "8 slices" },
+  { name: "Large", servings: "12 slices" },
 ];
 
 export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModalProps) {
   const [step, setStep] = useState(1);
   const [selectedPizza, setSelectedPizza] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   // Reset when modal opens
   useEffect(() => {
@@ -48,7 +41,6 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
         setSelectedPizza(null);
       }
       setSelectedSize(null);
-      setSelectedLocation(null);
     }
   }, [isOpen, initialPizza]);
 
@@ -62,24 +54,10 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
     setStep(3);
   };
 
-  const handleLocationSelect = (locationName: string) => {
-    setSelectedLocation(locationName);
-  };
-
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1);
     }
-  };
-
-  const getSelectedPrice = () => {
-    const size = sizes.find((s) => s.name === selectedSize);
-    return size?.price || 0;
-  };
-
-  const getLocationPhone = () => {
-    const location = locations.find((l) => l.name === selectedLocation);
-    return location?.phone || "";
   };
 
   if (!isOpen) return null;
@@ -108,7 +86,7 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
             <h2 className="text-xl font-bold text-[#2D1810]">
               {step === 1 && "Step 1: Choose Your Pizza"}
               {step === 2 && "Step 2: Select Size"}
-              {step === 3 && "Step 3: Confirm Order"}
+              {step === 3 && "Step 3: Call to Order"}
             </h2>
           </div>
           <button
@@ -156,14 +134,21 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
                 <button
                   key={pizza.name}
                   onClick={() => handlePizzaSelect(pizza.name)}
-                  className={`p-4 rounded-xl border-2 text-left transition-all hover:shadow-lg ${
+                  className={`p-3 rounded-xl border-2 text-left transition-all hover:shadow-lg ${
                     selectedPizza === pizza.name
                       ? "border-[#E63946] bg-[#FFF5E6]"
                       : "border-gray-200 hover:border-[#F77F00]"
                   }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="text-3xl">🍕</span>
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                      <Image
+                        src={pizza.image}
+                        alt={pizza.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                     <div>
                       <h3 className="font-bold text-[#2D1810]">{pizza.name}</h3>
                       <p className="text-sm text-gray-600">{pizza.description}</p>
@@ -193,11 +178,7 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
                         : "border-gray-200 hover:border-[#F77F00]"
                     }`}
                   >
-                    <div className="text-4xl mb-2">
-                      {size.name === "Small" ? "🍕" : size.name === "Medium" ? "🍕🍕" : "🍕🍕🍕"}
-                    </div>
                     <h3 className="font-bold text-xl text-[#2D1810]">{size.name}</h3>
-                    <p className="text-[#E63946] font-bold text-2xl">${size.price}</p>
                     <p className="text-sm text-gray-500 mt-1">{size.servings}</p>
                   </button>
                 ))}
@@ -205,75 +186,52 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
             </div>
           )}
 
-          {/* Step 3: Confirm & Select Location */}
+          {/* Step 3: Call to Order */}
           {step === 3 && (
             <div className="space-y-6">
               {/* Order Summary */}
               <div className="bg-[#FFF5E6] rounded-xl p-6">
-                <h3 className="font-bold text-lg text-[#2D1810] mb-4">Order Summary</h3>
+                <h3 className="font-bold text-lg text-[#2D1810] mb-4">Your Order</h3>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[#8B4513]">Pizza:</span>
                   <span className="font-semibold text-[#2D1810]">{selectedPizza}</span>
                 </div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between">
                   <span className="text-[#8B4513]">Size:</span>
                   <span className="font-semibold text-[#2D1810]">{selectedSize}</span>
                 </div>
-                <div className="border-t border-[#D4A574] pt-3 mt-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-[#2D1810]">Total:</span>
-                    <span className="font-bold text-2xl text-[#E63946]">
-                      ${getSelectedPrice().toFixed(2)}
-                    </span>
+              </div>
+
+              {/* Location Info */}
+              <div className="bg-white border border-gray-200 rounded-xl p-6">
+                <h3 className="font-bold text-lg text-[#2D1810] mb-4">
+                  J. Beethoven&apos;s Pizza - Cultus Lake
+                </h3>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2 text-[#8B4513]">
+                    <MapPin size={16} className="text-[#E63946]" />
+                    <span>4125 Columbia Valley Highway, Cultus Lake, BC</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#8B4513]">
+                    <Phone size={16} className="text-[#E63946]" />
+                    <span className="font-semibold">(604) 858-7766</span>
                   </div>
                 </div>
               </div>
 
-              {/* Select Location */}
-              <div>
-                <h3 className="font-bold text-lg text-[#2D1810] mb-4">
-                  Select Pickup Location
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {locations.map((location) => (
-                    <button
-                      key={location.name}
-                      onClick={() => handleLocationSelect(location.name)}
-                      className={`p-4 rounded-xl border-2 text-left transition-all ${
-                        selectedLocation === location.name
-                          ? "border-[#E63946] bg-[#FFF5E6]"
-                          : "border-gray-200 hover:border-[#F77F00]"
-                      }`}
-                    >
-                      <h4 className="font-bold text-[#2D1810] mb-2">{location.name}</h4>
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-                        <MapPin size={14} />
-                        {location.address}
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-[#E63946] font-semibold">
-                        <Phone size={14} />
-                        {location.phone}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               {/* Call to Order */}
-              {selectedLocation && (
-                <div className="text-center">
-                  <p className="text-[#8B4513] mb-4">
-                    Call now to place your order!
-                  </p>
-                  <a
-                    href={`tel:${getLocationPhone()}`}
-                    className="btn-primary text-xl px-8 py-4 inline-flex items-center gap-3 animate-pulse-glow"
-                  >
-                    <Phone size={24} />
-                    Call {getLocationPhone()}
-                  </a>
-                </div>
-              )}
+              <div className="text-center">
+                <p className="text-[#8B4513] mb-4">
+                  Call now to place your order!
+                </p>
+                <a
+                  href="tel:604-858-7766"
+                  className="btn-primary text-xl px-8 py-4 inline-flex items-center gap-3 animate-pulse-glow"
+                >
+                  <Phone size={24} />
+                  Call (604) 858-7766
+                </a>
+              </div>
             </div>
           )}
         </div>
@@ -285,22 +243,11 @@ export default function OrderModal({ isOpen, onClose, initialPizza }: OrderModal
               {step === 1 && `${pizzas.length} pizzas available`}
               {step === 2 && selectedPizza && `Selected: ${selectedPizza}`}
               {step === 3 && selectedPizza && selectedSize && (
-                <span className="flex items-center gap-2">
-                  <ShoppingCart size={16} />
+                <span>
                   {selectedPizza} ({selectedSize})
                 </span>
               )}
             </div>
-
-            {step < 3 && selectedPizza && step === 1 && (
-              <button
-                onClick={() => setStep(2)}
-                className="btn-primary flex items-center gap-2"
-              >
-                Next
-                <ChevronRight size={20} />
-              </button>
-            )}
           </div>
         </div>
       </div>

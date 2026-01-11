@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Beethoven's Pizza | Best Pizza in BC",
-  description: "Experience a symphony of flavors at Beethoven's Pizza. Fresh ingredients, authentic recipes, and fast service at our Cultus Lake and Burnaby locations. Order online today!",
-  keywords: "pizza, Beethoven's Pizza, Cultus Lake, Burnaby, BC, delivery, takeout, Italian food",
+  title: "J. Beethoven's Pizza | Cultus Lake, BC | Since 1979",
+  description: "Legendary thick-crust, square-cut pizza at Cultus Lake since 1979. Detroit-style pizza made fresh daily with quality ingredients. Call (604) 858-7766 to order.",
+  keywords: "pizza, Beethoven's Pizza, Cultus Lake, BC, Detroit-style pizza, square cut pizza, thick crust, Fraser Valley, takeout",
   openGraph: {
-    title: "Beethoven's Pizza | Best Pizza in BC",
-    description: "Experience a symphony of flavors at Beethoven's Pizza. Fresh ingredients, authentic recipes.",
+    title: "J. Beethoven's Pizza | Cultus Lake, BC",
+    description: "Legendary thick-crust, square-cut pizza at Cultus Lake since 1979. A family tradition for over 45 years.",
     type: "website",
   },
 };
