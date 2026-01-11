@@ -23,13 +23,13 @@ const pizzaPhotos = [
 
 export default function PizzaGallery() {
   return (
-    <section className="py-16 md:py-24 bg-[#2D1810] overflow-hidden">
+    <section className="py-16 md:py-24 bg-gradient-to-br from-[#2C3E50] to-[#34495E] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Fresh From the Oven
           </h2>
-          <p className="text-[#D4A574] text-lg max-w-2xl mx-auto">
+          <p className="text-[#B8E8E4] text-lg max-w-2xl mx-auto">
             Our signature thick-crust, rectangular pizzas - baked to perfection with the finest ingredients
           </p>
         </div>
@@ -47,32 +47,32 @@ export default function PizzaGallery() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B6B]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>
 
-        {/* Feature highlights */}
+        {/* Feature highlights - Summer lakeside theme */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="p-4">
             <div className="text-4xl mb-2">🧀</div>
             <h3 className="text-white font-bold mb-1">Thick Crust</h3>
-            <p className="text-[#D4A574] text-sm">Detroit-style dough</p>
+            <p className="text-[#B8E8E4] text-sm">Detroit-style dough</p>
           </div>
           <div className="p-4">
             <div className="text-4xl mb-2">🍅</div>
             <h3 className="text-white font-bold mb-1">Fresh Ingredients</h3>
-            <p className="text-[#D4A574] text-sm">Quality toppings daily</p>
+            <p className="text-[#B8E8E4] text-sm">Quality toppings daily</p>
           </div>
           <div className="p-4">
             <div className="text-4xl mb-2">🔥</div>
             <h3 className="text-white font-bold mb-1">Cup & Char</h3>
-            <p className="text-[#D4A574] text-sm">Signature pepperoni</p>
+            <p className="text-[#B8E8E4] text-sm">Signature pepperoni</p>
           </div>
           <div className="p-4">
             <div className="text-4xl mb-2">✂️</div>
             <h3 className="text-white font-bold mb-1">Square Cut</h3>
-            <p className="text-[#D4A574] text-sm">Classic rectangular style</p>
+            <p className="text-[#B8E8E4] text-sm">Classic rectangular style</p>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export default function PizzaGallery() {
         <div className="text-center mt-10">
           <a
             href="tel:604-858-7766"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-[#E63946] to-[#F77F00] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-[#FF6B6B] to-[#FF9A5C] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-shadow"
           >
             Order Your Pizza Today
           </a>

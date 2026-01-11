@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, MapPin, Clock, Facebook, Instagram } from "lucide-react";
+import Link from "next/link";
 
 interface FooterProps {
   onOrderClick: () => void;
@@ -10,19 +11,19 @@ export default function Footer({ onOrderClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-[#2D1810] text-white">
-      {/* CTA Section */}
-      <div className="pizza-gradient py-12">
+    <footer id="contact" className="bg-[#2C3E50] text-white">
+      {/* CTA Section - Summer sunset gradient */}
+      <div className="bg-gradient-to-r from-[#FF6B6B] via-[#FF9A5C] to-[#FFE66D] py-12">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">
             Ready for Legendary Pizza?
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg mb-8 text-white/90">
             Call us today and taste the tradition that&apos;s been delighting Cultus Lake since 1979!
           </p>
           <a
             href="tel:604-858-7766"
-            className="inline-flex items-center gap-2 bg-white text-[#E63946] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#FFF5E6] transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 bg-white text-[#FF6B6B] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#2C3E50] hover:text-white transition-colors shadow-lg"
           >
             <Phone size={24} />
             Call (604) 858-7766
@@ -41,10 +42,10 @@ export default function Footer({ onOrderClick }: FooterProps) {
               </div>
               <div>
                 <h3 className="text-xl font-bold">J. Beethoven&apos;s Pizza</h3>
-                <p className="text-sm text-[#D4A574]">Since 1979</p>
+                <p className="text-sm text-[#4ECDC4]">Since 1979</p>
               </div>
             </div>
-            <p className="text-[#D4A574] mb-4">
+            <p className="text-[#B8E8E4] mb-4">
               Legendary thick-crust, square-cut pizza made fresh daily.
               A Cultus Lake tradition for over 45 years.
             </p>
@@ -52,14 +53,14 @@ export default function Footer({ onOrderClick }: FooterProps) {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-[#4ECDC4]/20 flex items-center justify-center hover:bg-[#4ECDC4]/40 transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-[#4ECDC4]/20 flex items-center justify-center hover:bg-[#4ECDC4]/40 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -70,7 +71,7 @@ export default function Footer({ onOrderClick }: FooterProps) {
           {/* Location Info */}
           <div>
             <h4 className="text-lg font-bold mb-4">Visit Us</h4>
-            <div className="space-y-3 text-[#D4A574]">
+            <div className="space-y-3 text-[#B8E8E4]">
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=49.0614,-121.9854"
                 target="_blank"
@@ -101,27 +102,27 @@ export default function Footer({ onOrderClick }: FooterProps) {
           <div>
             <h4 className="text-lg font-bold mb-4">Quick Links</h4>
             <nav className="space-y-3">
-              <a
-                href="#menu"
-                className="block text-[#D4A574] hover:text-white transition-colors"
+              <Link
+                href="/menu"
+                className="block text-[#B8E8E4] hover:text-[#FFE66D] transition-colors"
               >
-                Menu
-              </a>
+                Full Menu
+              </Link>
               <a
                 href="#about"
-                className="block text-[#D4A574] hover:text-white transition-colors"
+                className="block text-[#B8E8E4] hover:text-[#FFE66D] transition-colors"
               >
                 About Us
               </a>
               <a
                 href="#location"
-                className="block text-[#D4A574] hover:text-white transition-colors"
+                className="block text-[#B8E8E4] hover:text-[#FFE66D] transition-colors"
               >
                 Location & Hours
               </a>
               <a
                 href="tel:604-858-7766"
-                className="block text-[#D4A574] hover:text-white transition-colors"
+                className="block text-[#B8E8E4] hover:text-[#FFE66D] transition-colors"
               >
                 Call to Order
               </a>
@@ -129,8 +130,8 @@ export default function Footer({ onOrderClick }: FooterProps) {
 
             {/* Features */}
             <div className="mt-6 pt-6 border-t border-white/10">
-              <p className="text-sm text-[#D4A574] mb-2">We offer:</p>
-              <ul className="text-sm text-[#D4A574] space-y-1">
+              <p className="text-sm text-[#B8E8E4] mb-2">We offer:</p>
+              <ul className="text-sm text-[#B8E8E4] space-y-1">
                 <li>Gluten-free pizza (medium)</li>
                 <li>Patio seating</li>
                 <li>Beer & wine</li>
@@ -141,7 +142,7 @@ export default function Footer({ onOrderClick }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-[#D4A574] text-sm">
+        <div className="border-t border-white/10 mt-12 pt-8 text-center text-[#B8E8E4] text-sm">
           <p>
             &copy; {currentYear} J. Beethoven&apos;s Pizza - Cultus Lake, BC. All rights reserved.
           </p>
