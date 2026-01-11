@@ -179,40 +179,40 @@ export default function MenuPage() {
             <p className="text-[#2C3E50]/70">Customize your pizza with additional toppings</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {/* Regular Toppings */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="font-bold text-[#2C3E50] text-xl mb-4">{menuData.extraIngredients.regular.title}</h3>
-              <p className="text-sm text-[#2C3E50]/70 mb-4">
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
+              <h3 className="font-bold text-[#2C3E50] text-lg md:text-xl mb-3 md:mb-4">{menuData.extraIngredients.regular.title}</h3>
+              <p className="text-xs md:text-sm text-[#2C3E50]/70 mb-3 md:mb-4">
                 {menuData.extraIngredients.regular.items.join(" • ")}
               </p>
-              <div className="bg-[#FFF5EE] rounded-xl p-4 flex justify-between text-sm">
+              <div className="bg-[#FFF5EE] rounded-xl p-3 md:p-4 flex flex-col sm:flex-row justify-between gap-2 text-xs md:text-sm">
                 <span><strong>Small:</strong> {menuData.extraIngredients.regular.prices.small}</span>
-                <span><strong>Medium:</strong> {menuData.extraIngredients.regular.prices.medium}</span>
+                <span><strong>Med:</strong> {menuData.extraIngredients.regular.prices.medium}</span>
                 <span><strong>Large:</strong> {menuData.extraIngredients.regular.prices.large}</span>
               </div>
             </div>
 
             {/* Gourmet Toppings */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-[#FFE66D]">
-              <h3 className="font-bold text-[#2C3E50] text-xl mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 border-2 border-[#FFE66D]">
+              <h3 className="font-bold text-[#2C3E50] text-lg md:text-xl mb-3 md:mb-4 flex items-center gap-2">
                 {menuData.extraIngredients.gourmet.title}
                 <span className="text-xs bg-[#FFE66D] text-[#2C3E50] px-2 py-0.5 rounded-full">PREMIUM</span>
               </h3>
-              <p className="text-sm text-[#2C3E50]/70 mb-4">
+              <p className="text-xs md:text-sm text-[#2C3E50]/70 mb-3 md:mb-4">
                 {menuData.extraIngredients.gourmet.items.join(" • ")}
               </p>
-              <div className="bg-[#FFE66D]/20 rounded-xl p-4 flex justify-between text-sm">
+              <div className="bg-[#FFE66D]/20 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row justify-between gap-2 text-xs md:text-sm">
                 <span><strong>Small:</strong> {menuData.extraIngredients.gourmet.prices.small}</span>
-                <span><strong>Medium:</strong> {menuData.extraIngredients.gourmet.prices.medium}</span>
+                <span><strong>Med:</strong> {menuData.extraIngredients.gourmet.prices.medium}</span>
                 <span><strong>Large:</strong> {menuData.extraIngredients.gourmet.prices.large}</span>
               </div>
             </div>
 
             {/* Extra Cheese */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:col-span-2">
-              <h3 className="font-bold text-[#2C3E50] text-xl mb-4">{menuData.extraIngredients.extraCheese.title}</h3>
-              <div className="bg-[#4ECDC4]/10 rounded-xl p-4 flex justify-center gap-12 text-sm">
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 md:col-span-2">
+              <h3 className="font-bold text-[#2C3E50] text-lg md:text-xl mb-3 md:mb-4">{menuData.extraIngredients.extraCheese.title}</h3>
+              <div className="bg-[#4ECDC4]/10 rounded-xl p-3 md:p-4 flex flex-col sm:flex-row justify-center gap-4 sm:gap-12 text-xs md:text-sm">
                 <span><strong>Small:</strong> {menuData.extraIngredients.extraCheese.prices.small}</span>
                 <span><strong>Medium:</strong> {menuData.extraIngredients.extraCheese.prices.medium}</span>
                 <span><strong>Large:</strong> {menuData.extraIngredients.extraCheese.prices.large}</span>
@@ -232,15 +232,15 @@ export default function MenuPage() {
             {menuData.submarines.map((sub, index) => (
               <div
                 key={sub.name}
-                className={`px-6 py-4 flex justify-between items-center ${
+                className={`px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 ${
                   index % 2 === 0 ? "bg-white" : "bg-[#FFF5EE]"
                 }`}
               >
-                <div>
-                  <h3 className="font-bold text-[#2C3E50]">{sub.name}</h3>
-                  <p className="text-sm text-[#2C3E50]/60">{sub.description}</p>
+                <div className="flex-1">
+                  <h3 className="font-bold text-[#2C3E50] text-sm md:text-base">{sub.name}</h3>
+                  <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{sub.description}</p>
                 </div>
-                <span className="font-bold text-[#FF6B6B] text-lg">{sub.price}</span>
+                <span className="font-bold text-[#FF6B6B] text-base md:text-lg">{sub.price}</span>
               </div>
             ))}
           </div>
@@ -256,15 +256,15 @@ export default function MenuPage() {
             {menuData.appetizers.map((item, index) => (
               <div
                 key={item.name}
-                className={`px-6 py-4 flex justify-between items-center ${
+                className={`px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 ${
                   index % 2 === 0 ? "bg-white" : "bg-[#FFF5EE]"
                 }`}
               >
-                <div>
-                  <h3 className="font-bold text-[#2C3E50]">{item.name}</h3>
-                  <p className="text-sm text-[#2C3E50]/60">{item.description}</p>
+                <div className="flex-1">
+                  <h3 className="font-bold text-[#2C3E50] text-sm md:text-base">{item.name}</h3>
+                  <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{item.description}</p>
                 </div>
-                <span className="font-bold text-[#FF6B6B] text-lg">{item.price}</span>
+                <span className="font-bold text-[#FF6B6B] text-base md:text-lg">{item.price}</span>
               </div>
             ))}
           </div>
@@ -278,7 +278,7 @@ export default function MenuPage() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-[#4ECDC4] text-white px-6 py-3 grid grid-cols-3 gap-4 text-sm font-semibold">
+            <div className="bg-[#4ECDC4] text-white px-3 md:px-6 py-3 grid grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm font-semibold">
               <span>Salad</span>
               <span className="text-center">Small</span>
               <span className="text-center">Large</span>
@@ -286,20 +286,20 @@ export default function MenuPage() {
             {menuData.salads.map((salad, index) => (
               <div
                 key={salad.name}
-                className={`px-6 py-4 grid grid-cols-3 gap-4 items-center ${
+                className={`px-3 md:px-6 py-3 md:py-4 grid grid-cols-3 gap-2 md:gap-4 items-center ${
                   index % 2 === 0 ? "bg-white" : "bg-[#B8E8E4]/20"
                 }`}
               >
                 <div>
-                  <h3 className="font-bold text-[#2C3E50]">{salad.name}</h3>
-                  <p className="text-sm text-[#2C3E50]/60">{salad.description}</p>
+                  <h3 className="font-bold text-[#2C3E50] text-sm md:text-base">{salad.name}</h3>
+                  <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{salad.description}</p>
                 </div>
-                <span className="text-center font-semibold text-[#4ECDC4]">{salad.small}</span>
-                <span className="text-center font-semibold text-[#4ECDC4]">{salad.large}</span>
+                <span className="text-center font-semibold text-[#4ECDC4] text-xs md:text-base">{salad.small}</span>
+                <span className="text-center font-semibold text-[#4ECDC4] text-xs md:text-base">{salad.large}</span>
               </div>
             ))}
           </div>
-          <p className="text-center mt-4 text-[#2C3E50]/70">Add Shrimp - $6.00 | Extra Dressing - $1.50</p>
+          <p className="text-center mt-4 text-sm text-[#2C3E50]/70">Add Shrimp - $6.00 | Extra Dressing - $1.50</p>
         </section>
 
         {/* Pasta Section */}
