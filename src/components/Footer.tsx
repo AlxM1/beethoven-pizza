@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, MapPin, Clock, Facebook, Instagram, Twitter } from "lucide-react";
+import { Phone, MapPin, Clock, Facebook, Instagram } from "lucide-react";
 
 interface FooterProps {
   onOrderClick: () => void;
@@ -15,23 +15,24 @@ export default function Footer({ onOrderClick }: FooterProps) {
       <div className="pizza-gradient py-12">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready for the Best Pizza in BC?
+            Ready for Legendary Pizza?
           </h2>
           <p className="text-lg mb-8 opacity-90">
-            Order now and experience a symphony of flavors!
+            Call us today and taste the tradition that&apos;s been delighting Cultus Lake since 1979!
           </p>
-          <button
-            onClick={onOrderClick}
-            className="bg-white text-[#E63946] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#FFF5E6] transition-colors shadow-lg"
+          <a
+            href="tel:604-858-7766"
+            className="inline-flex items-center gap-2 bg-white text-[#E63946] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#FFF5E6] transition-colors shadow-lg"
           >
-            Order Now
-          </button>
+            <Phone size={24} />
+            Call (604) 858-7766
+          </a>
         </div>
       </div>
 
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -39,40 +40,36 @@ export default function Footer({ onOrderClick }: FooterProps) {
                 <span className="text-white text-2xl font-bold">B</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Beethoven&apos;s Pizza</h3>
-                <p className="text-sm text-[#D4A574]">A Symphony of Flavors</p>
+                <h3 className="text-xl font-bold">J. Beethoven&apos;s Pizza</h3>
+                <p className="text-sm text-[#D4A574]">Since 1979</p>
               </div>
             </div>
             <p className="text-[#D4A574] mb-4">
-              Crafting delicious pizzas with fresh ingredients and authentic recipes
-              since day one.
+              Legendary thick-crust, square-cut pizza made fresh daily.
+              A Cultus Lake tradition for over 45 years.
             </p>
             {/* Social links */}
             <div className="flex gap-4">
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <Twitter size={20} />
               </a>
             </div>
           </div>
 
-          {/* Cultus Lake Location */}
+          {/* Location Info */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Cultus Lake</h4>
+            <h4 className="text-lg font-bold mb-4">Visit Us</h4>
             <div className="space-y-3 text-[#D4A574]">
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=49.0614,-121.9854"
@@ -81,48 +78,20 @@ export default function Footer({ onOrderClick }: FooterProps) {
                 className="flex items-start gap-2 hover:text-white transition-colors"
               >
                 <MapPin size={18} className="mt-0.5 flex-shrink-0" />
-                <span>4125 Columbia Valley Highway, Cultus Lake, BC</span>
+                <span>4125 Columbia Valley Highway<br />Cultus Lake, BC V2R 5B6</span>
               </a>
               <a
                 href="tel:604-858-7766"
                 className="flex items-center gap-2 hover:text-white transition-colors"
               >
                 <Phone size={18} />
-                <span>604-858-7766</span>
-              </a>
-              <div className="flex items-start gap-2">
-                <Clock size={18} className="mt-0.5 flex-shrink-0" />
-                <span>Daily: 12 PM - 8 PM</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Burnaby Location */}
-          <div>
-            <h4 className="text-lg font-bold mb-4">Burnaby</h4>
-            <div className="space-y-3 text-[#D4A574]">
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=49.2622,-122.9621"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-2 hover:text-white transition-colors"
-              >
-                <MapPin size={18} className="mt-0.5 flex-shrink-0" />
-                <span>#4 - 2909 Bainbridge Avenue, Burnaby, BC</span>
-              </a>
-              <a
-                href="tel:604-421-7735"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Phone size={18} />
-                <span>604-421-7735</span>
+                <span>(604) 858-7766</span>
               </a>
               <div className="flex items-start gap-2">
                 <Clock size={18} className="mt-0.5 flex-shrink-0" />
                 <div>
-                  <p>Mon-Fri: 11 AM - 8 PM</p>
-                  <p>Sat: 4 PM - 8 PM</p>
-                  <p>Sun: Closed</p>
+                  <p>Daily: 12:00 PM - 8:00 PM</p>
+                  <p className="text-sm">Full Menu: 3:00 PM - 7:20 PM</p>
                 </div>
               </div>
             </div>
@@ -145,25 +114,36 @@ export default function Footer({ onOrderClick }: FooterProps) {
                 About Us
               </a>
               <a
-                href="#locations"
+                href="#location"
                 className="block text-[#D4A574] hover:text-white transition-colors"
               >
-                Locations
+                Location & Hours
               </a>
-              <button
-                onClick={onOrderClick}
-                className="block text-[#D4A574] hover:text-white transition-colors text-left"
+              <a
+                href="tel:604-858-7766"
+                className="block text-[#D4A574] hover:text-white transition-colors"
               >
-                Order Now
-              </button>
+                Call to Order
+              </a>
             </nav>
+
+            {/* Features */}
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <p className="text-sm text-[#D4A574] mb-2">We offer:</p>
+              <ul className="text-sm text-[#D4A574] space-y-1">
+                <li>Gluten-free pizza (medium)</li>
+                <li>Patio seating</li>
+                <li>Beer & wine</li>
+                <li>Takeout</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-[#D4A574] text-sm">
           <p>
-            &copy; {currentYear} Beethoven&apos;s Pizza. All rights reserved.
+            &copy; {currentYear} J. Beethoven&apos;s Pizza - Cultus Lake, BC. All rights reserved.
           </p>
         </div>
       </div>
