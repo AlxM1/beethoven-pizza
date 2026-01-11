@@ -90,28 +90,29 @@ export default function MenuPage() {
     <main className="min-h-screen bg-[#FFF9F5]">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-3 md:px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 md:gap-4 min-w-0">
             <Link
               href="/"
-              className="flex items-center gap-2 text-[#2C3E50] hover:text-[#FF6B6B] transition-colors font-medium bg-[#FFF5EE] px-3 py-2 rounded-lg"
+              className="flex items-center gap-1.5 md:gap-2 text-[#2C3E50] hover:text-[#FF6B6B] transition-colors font-medium bg-[#FFF5EE] px-2 md:px-3 py-2 rounded-lg flex-shrink-0 text-sm md:text-base"
             >
-              <ArrowLeft size={20} />
-              <span className="hidden sm:inline">Home</span>
+              <ArrowLeft size={18} className="md:w-5 md:h-5" />
+              <span className="text-xs sm:text-sm md:text-base">Home</span>
             </Link>
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center min-w-0">
               <Image
                 src="/images/logo.png"
                 alt="J. Beethoven's Pizza"
-                width={160}
-                height={70}
-                className="h-14 md:h-16 w-auto object-contain"
+                width={140}
+                height={60}
+                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
               />
             </Link>
           </div>
-          <a href="tel:604-858-7766" className="btn-primary flex items-center gap-2">
-            <Phone size={18} />
-            <span className="hidden sm:inline">Call to Order</span>
+          <a href="tel:604-858-7766" className="btn-primary flex items-center gap-1.5 md:gap-2 text-sm md:text-base px-3 md:px-4 py-2 md:py-3 flex-shrink-0">
+            <Phone size={16} className="md:w-5 md:h-5" />
+            <span className="hidden xs:inline">Call</span>
+            <span className="hidden sm:inline">to Order</span>
           </a>
         </div>
       </header>
@@ -349,33 +350,33 @@ export default function MenuPage() {
 
         {/* Beverages & Extras */}
         <section className="mb-12">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {/* Beverages */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-[#2C3E50] mb-4">Beverages</h2>
-              <div className="space-y-3">
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
+              <h2 className="text-xl md:text-2xl font-bold text-[#2C3E50] mb-4">Beverages</h2>
+              <div className="space-y-2 md:space-y-3">
                 {menuData.beverages.map((item) => (
-                  <div key={item.name} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
+                  <div key={item.name} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0 text-sm md:text-base">
                     <span className="text-[#2C3E50]">{item.name}</span>
                     <span className="font-bold text-[#FF6B6B]">{item.price}</span>
                   </div>
                 ))}
               </div>
               <div className="mt-4 p-3 bg-[#FFE66D]/20 rounded-xl text-center">
-                <p className="text-[#2C3E50] font-semibold">Licensed - Beer & Wine Available</p>
+                <p className="text-[#2C3E50] font-semibold text-sm md:text-base">Licensed - Beer & Wine Available</p>
               </div>
             </div>
 
             {/* Extras */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-[#2C3E50] mb-4">Extras</h2>
+            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
+              <h2 className="text-xl md:text-2xl font-bold text-[#2C3E50] mb-4">Extras</h2>
               <div className="space-y-3">
                 {menuData.extras.map((item) => (
-                  <div key={item.name} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
-                    <div>
+                  <div key={item.name} className="flex justify-between items-start py-2 border-b border-gray-100 last:border-0 text-sm md:text-base">
+                    <div className="flex-1 pr-2">
                       <span className="text-[#2C3E50]">{item.name}</span>
                       {item.description && (
-                        <p className="text-sm text-[#2C3E50]/60">{item.description}</p>
+                        <p className="text-xs md:text-sm text-[#2C3E50]/60 mt-1">{item.description}</p>
                       )}
                     </div>
                     <span className="font-bold text-[#4ECDC4]">{item.price}</span>
@@ -405,10 +406,10 @@ export default function MenuPage() {
       {/* Floating Order Button */}
       <a
         href="tel:604-858-7766"
-        className="fixed bottom-6 right-6 bg-[#FF6B6B] hover:bg-[#FF5252] text-white font-bold px-6 py-3 rounded-full shadow-lg flex items-center gap-2 lg:hidden z-50 transition-colors"
+        className="fixed bottom-4 left-4 right-4 lg:bottom-6 lg:right-6 lg:left-auto lg:w-auto bg-[#FF6B6B] hover:bg-[#FF5252] text-white font-bold px-4 md:px-6 py-3 md:py-4 rounded-full shadow-lg flex items-center justify-center gap-2 lg:hidden z-50 transition-colors text-sm md:text-base"
       >
-        <Phone size={20} />
-        <span>Order Now</span>
+        <Phone size={18} className="md:w-5 md:h-5" />
+        <span>Call to Order</span>
       </a>
 
       {/* Footer */}
