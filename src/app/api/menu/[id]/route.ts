@@ -71,7 +71,7 @@ export async function PUT(
     return NextResponse.json(item);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error("Update menu item error:", error);
     return NextResponse.json(
