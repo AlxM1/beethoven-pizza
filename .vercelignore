@@ -1,0 +1,5 @@
+prisma/seed.ts
+.git
+.env
+.env.local
+README.md
