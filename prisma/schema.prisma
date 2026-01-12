@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ===== USER & AUTH =====
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("admin") // "admin" | "staff"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ===== MENU CATEGORIES =====
+model Category {
+  id           String     @id @default(cuid())
+  name         String     @unique
+  slug         String     @unique
+  description  String?
+  displayOrder Int        @default(0)
+  isActive     Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  items        MenuItem[]
+}
+
+// ===== MENU ITEMS =====
+model MenuItem {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  // Pricing (nullable for items with size variants)
+  price Float?
+
+  // Size-based pricing (for pizzas, salads)
+  priceSmall  Float?
+  priceMedium Float?
+  priceLarge  Float?
+
+  // Flags
+  isSignature  Boolean @default(false)
+  isPopular    Boolean @default(false)
+  isPremium    Boolean @default(false)
+  isGlutenFree Boolean @default(false)
+  isVegetarian Boolean @default(false)
+  isActive     Boolean @default(true)
+
+  // Image
+  imageUrl String?
+
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orderItems OrderItem[]
+}
+
+// ===== TOPPINGS =====
+model Topping {
+  id           String  @id @default(cuid())
+  name         String  @unique
+  type         String  @default("regular") // "regular" | "gourmet" | "cheese"
+  priceSmall   Float
+  priceMedium  Float
+  priceLarge   Float
+  isActive     Boolean @default(true)
+  displayOrder Int     @default(0)
+
+  orderItemToppings OrderItemTopping[]
+}
+
+// ===== ORDERS =====
+model Order {
+  id          String @id @default(cuid())
+  orderNumber String @unique // e.g., "BPZ-20260112-001"
+
+  // Customer info
+  customerName  String
+  customerPhone String
+  customerEmail String?
+
+  // Order details
+  orderType String // "phone" | "online_stripe" | "online_pickup"
+  status    String @default("pending") // "pending" | "confirmed" | "preparing" | "ready" | "completed" | "cancelled"
+
+  // Pricing
+  subtotal Float
+  tax      Float
+  total    Float
+
+  // Payment
+  paymentStatus   String  @default("pending") // "pending" | "paid" | "failed" | "refunded"
+  paymentMethod   String? // "stripe" | "cash" | "card_at_pickup"
+  stripePaymentId String?
+
+  // Timing
+  pickupTime DateTime?
+  notes      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+
+  quantity   Int     @default(1)
+  size       String? // "small" | "medium" | "large" (for pizzas/salads)
+  unitPrice  Float
+  totalPrice Float
+
+  specialInstructions String?
+
+  toppings OrderItemTopping[]
+}
+
+model OrderItemTopping {
+  id          String    @id @default(cuid())
+  orderItemId String
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  toppingId   String
+  topping     Topping   @relation(fields: [toppingId], references: [id])
+  price       Float
+}
