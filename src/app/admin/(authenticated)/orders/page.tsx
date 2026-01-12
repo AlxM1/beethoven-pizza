@@ -64,19 +64,19 @@ export default function OrdersPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Orders</h1>
+    <div className="space-y-4 md:space-y-6">
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900">Orders</h1>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm p-4 flex flex-wrap gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+      <div className="bg-white rounded-xl shadow-sm p-3 md:p-4 flex flex-col sm:flex-row sm:flex-wrap gap-3 md:gap-4">
+        <div className="flex-1 min-w-[150px]">
+          <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Status
           </label>
           <select
             value={filters.status}
             onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
+            className="w-full border border-gray-300 rounded-lg px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm"
           >
             <option value="all">All Statuses</option>
             {Object.entries(ORDER_STATUSES).map(([key, { label }]) => (
@@ -87,8 +87,8 @@ export default function OrdersPage() {
           </select>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="flex-1 min-w-[150px]">
+          <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Date Range
           </label>
           <select
@@ -96,7 +96,7 @@ export default function OrdersPage() {
             onChange={(e) =>
               setFilters({ ...filters, dateRange: e.target.value })
             }
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
+            className="w-full border border-gray-300 rounded-lg px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm"
           >
             <option value="today">Today</option>
             <option value="week">This Week</option>
@@ -105,8 +105,8 @@ export default function OrdersPage() {
           </select>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="flex-1 min-w-[150px]">
+          <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Order Type
           </label>
           <select
@@ -114,7 +114,7 @@ export default function OrdersPage() {
             onChange={(e) =>
               setFilters({ ...filters, orderType: e.target.value })
             }
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
+            className="w-full border border-gray-300 rounded-lg px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm"
           >
             <option value="all">All Types</option>
             {Object.entries(ORDER_TYPES).map(([key, { label }]) => (
@@ -129,14 +129,14 @@ export default function OrdersPage() {
       {/* Orders List */}
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="animate-spin text-[#FF6B6B]" size={40} />
+          <Loader2 className="animate-spin text-[#FF6B6B]" size={32} className="md:w-10 md:h-10" />
         </div>
       ) : orders.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-          <p className="text-gray-500">No orders found</p>
+        <div className="bg-white rounded-xl shadow-sm p-8 md:p-12 text-center">
+          <p className="text-gray-500 text-sm md:text-base">No orders found</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {orders.map((order) => {
             const statusInfo =
               ORDER_STATUSES[order.status as keyof typeof ORDER_STATUSES];
@@ -150,18 +150,18 @@ export default function OrdersPage() {
                 className="bg-white rounded-xl shadow-sm overflow-hidden"
               >
                 <div
-                  className="p-4 flex items-center gap-4 cursor-pointer hover:bg-gray-50"
+                  className="p-3 md:p-4 flex items-center gap-3 md:gap-4 cursor-pointer hover:bg-gray-50"
                   onClick={() =>
                     setExpandedOrder(isExpanded ? null : order.id)
                   }
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-bold text-gray-900">
+                    <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-1">
+                      <span className="font-bold text-gray-900 text-sm md:text-base">
                         {order.orderNumber}
                       </span>
                       <span
-                        className={`px-2 py-0.5 rounded-full text-xs font-medium bg-${statusInfo?.color}-100 text-${statusInfo?.color}-600`}
+                        className={`px-1.5 md:px-2 py-0.5 rounded-full text-xs font-medium bg-${statusInfo?.color}-100 text-${statusInfo?.color}-600`}
                         style={{
                           backgroundColor:
                             statusInfo?.color === "yellow"
@@ -191,11 +191,11 @@ export default function OrdersPage() {
                       >
                         {statusInfo?.label}
                       </span>
-                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                      <span className="px-1.5 md:px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
                         {typeInfo?.label}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-xs md:text-sm text-gray-500 truncate">
                       {order.customerName} - {order.customerPhone}
                     </p>
                     <p className="text-xs text-gray-400">
@@ -203,59 +203,60 @@ export default function OrdersPage() {
                     </p>
                   </div>
 
-                  <div className="text-right">
-                    <p className="font-bold text-lg text-gray-900">
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-bold text-base md:text-lg text-gray-900">
                       {formatCurrency(order.total)}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-xs md:text-sm text-gray-500">
                       {order.items.length} items
                     </p>
                   </div>
 
                   <ChevronDown
-                    className={`text-gray-400 transition-transform ${
+                    className={`text-gray-400 transition-transform flex-shrink-0 ${
                       isExpanded ? "rotate-180" : ""
                     }`}
-                    size={20}
+                    size={18}
+                    className="md:w-5 md:h-5"
                   />
                 </div>
 
                 {isExpanded && (
-                  <div className="border-t bg-gray-50 p-4">
-                    <div className="mb-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Items:</h4>
+                  <div className="border-t bg-gray-50 p-3 md:p-4">
+                    <div className="mb-3 md:mb-4">
+                      <h4 className="font-medium text-gray-900 mb-2 text-sm md:text-base">Items:</h4>
                       <ul className="space-y-1">
                         {order.items.map((item) => (
                           <li
                             key={item.id}
-                            className="text-sm text-gray-600 flex justify-between"
+                            className="text-xs md:text-sm text-gray-600 flex justify-between gap-2"
                           >
-                            <span>
+                            <span className="truncate">
                               {item.quantity}x {item.menuItem.name}
                               {item.size && ` (${item.size})`}
                             </span>
-                            <span>{formatCurrency(item.totalPrice)}</span>
+                            <span className="flex-shrink-0">{formatCurrency(item.totalPrice)}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     {order.notes && (
-                      <div className="mb-4 p-3 bg-yellow-50 rounded-lg">
-                        <p className="text-sm text-yellow-800">
+                      <div className="mb-3 md:mb-4 p-2 md:p-3 bg-yellow-50 rounded-lg">
+                        <p className="text-xs md:text-sm text-yellow-800">
                           <strong>Notes:</strong> {order.notes}
                         </p>
                       </div>
                     )}
 
-                    <div className="flex gap-2">
-                      <label className="text-sm font-medium text-gray-700">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <label className="text-xs md:text-sm font-medium text-gray-700 sm:whitespace-nowrap">
                         Update Status:
                       </label>
                       <select
                         value={order.status}
                         onChange={(e) => updateStatus(order.id, e.target.value)}
-                        className="border border-gray-300 rounded px-2 py-1 text-sm"
+                        className="flex-1 sm:flex-none border border-gray-300 rounded px-2 py-1 text-xs md:text-sm"
                       >
                         {Object.entries(ORDER_STATUSES).map(
                           ([key, { label }]) => (

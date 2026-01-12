@@ -209,23 +209,23 @@ export default function EnhancedOrderModal({
   const isPizzaCategory = categories.find((c) => c.id === selectedCategory)?.slug === "pizza";
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div className="bg-white rounded-t-2xl sm:rounded-2xl w-full max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#FF6B6B] to-[#FF9A5C] p-4 text-white flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="bg-gradient-to-r from-[#FF6B6B] to-[#FF9A5C] p-3 md:p-4 text-white flex items-center justify-between">
+          <div className="flex items-center gap-2 md:gap-3 min-w-0">
             {step > 1 && step < 6 && (
               <button
                 onClick={() => {
                   if (step === 2) resetSelection();
                   setStep(step - 1);
                 }}
-                className="p-1 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-1 hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} className="md:w-6 md:h-6" />
               </button>
             )}
-            <h2 className="text-xl font-bold">
+            <h2 className="text-base md:text-xl font-bold truncate">
               {step === 1 && "Choose Your Items"}
               {step === 2 && "Customize"}
               {step === 3 && "Your Cart"}
@@ -236,9 +236,9 @@ export default function EnhancedOrderModal({
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+            className="p-1.5 md:p-2 hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
           >
-            <X size={24} />
+            <X size={20} className="md:w-6 md:h-6" />
           </button>
         </div>
 
