@@ -213,11 +213,10 @@ export default function OrdersPage() {
                   </div>
 
                   <ChevronDown
-                    className={`text-gray-400 transition-transform flex-shrink-0 ${
+                    className={`text-gray-400 transition-transform flex-shrink-0 md:w-5 md:h-5 ${
                       isExpanded ? "rotate-180" : ""
                     }`}
                     size={18}
-                    className="md:w-5 md:h-5"
                   />
                 </div>
 

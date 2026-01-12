@@ -260,7 +260,7 @@ export default function EnhancedOrderModal({
         <div className="flex-1 overflow-y-auto p-3 md:p-4">
           {loading ? (
             <div className="flex items-center justify-center h-48">
-              <Loader2 className="animate-spin text-[#FF6B6B]" size={32} className="md:w-10 md:h-10" />
+              <Loader2 className="animate-spin text-[#FF6B6B] md:w-10 md:h-10" size={32} />
             </div>
           ) : step === 1 ? (
             <div className="space-y-4">
@@ -432,7 +432,7 @@ export default function EnhancedOrderModal({
             <div className="space-y-3 md:space-y-4">
               {cart.items.length === 0 ? (
                 <div className="text-center py-8 md:py-12">
-                  <ShoppingBag className="mx-auto text-gray-300 mb-3 md:mb-4" size={40} className="md:w-12 md:h-12" />
+                  <ShoppingBag className="mx-auto text-gray-300 mb-3 md:mb-4 md:w-12 md:h-12" size={40} />
                   <p className="text-gray-500 text-sm md:text-base">Your cart is empty</p>
                   <button
                     onClick={() => setStep(1)}
@@ -598,7 +598,7 @@ export default function EnhancedOrderModal({
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Phone className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <Phone className="text-[#FF6B6B] flex-shrink-0 md:w-6 md:h-6" size={20} />
                   <div className="text-left min-w-0">
                     <div className="font-semibold text-sm md:text-base">Call to Order</div>
                     <div className="text-xs md:text-sm text-gray-500">
@@ -615,7 +615,7 @@ export default function EnhancedOrderModal({
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <CreditCard className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <CreditCard className="text-[#FF6B6B] flex-shrink-0 md:w-6 md:h-6" size={20} />
                   <div className="text-left min-w-0">
                     <div className="font-semibold text-sm md:text-base">Pay Online</div>
                     <div className="text-xs md:text-sm text-gray-500">
@@ -632,7 +632,7 @@ export default function EnhancedOrderModal({
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Wallet className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <Wallet className="text-[#FF6B6B] flex-shrink-0 md:w-6 md:h-6" size={20} />
                   <div className="text-left min-w-0">
                     <div className="font-semibold text-sm md:text-base">Pay at Pickup</div>
                     <div className="text-xs md:text-sm text-gray-500">
@@ -655,7 +655,7 @@ export default function EnhancedOrderModal({
                 >
                   {submitting ? (
                     <>
-                      <Loader2 className="animate-spin" size={18} className="md:w-5 md:h-5" />
+                      <Loader2 className="animate-spin md:w-5 md:h-5" size={18} />
                       Placing Order...
                     </>
                   ) : (
@@ -667,7 +667,7 @@ export default function EnhancedOrderModal({
           ) : step === 6 ? (
             <div className="text-center py-6 md:py-8">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                <Check className="text-green-600" size={32} className="md:w-10 md:h-10" />
+                <Check className="text-green-600 md:w-10 md:h-10" size={32} />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
                 Order Placed!
