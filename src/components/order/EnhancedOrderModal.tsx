@@ -257,10 +257,10 @@ export default function EnhancedOrderModal({
         )}
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-3 md:p-4">
           {loading ? (
             <div className="flex items-center justify-center h-48">
-              <Loader2 className="animate-spin text-[#FF6B6B]" size={40} />
+              <Loader2 className="animate-spin text-[#FF6B6B]" size={32} className="md:w-10 md:h-10" />
             </div>
           ) : step === 1 ? (
             <div className="space-y-4">
