@@ -265,12 +265,12 @@ export default function EnhancedOrderModal({
           ) : step === 1 ? (
             <div className="space-y-4">
               {/* Categories */}
-              <div className="flex gap-2 overflow-x-auto pb-2">
+              <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                    className={`px-3 md:px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm md:text-base flex-shrink-0 ${
                       selectedCategory === cat.id
                         ? "bg-[#FF6B6B] text-white"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -282,7 +282,7 @@ export default function EnhancedOrderModal({
               </div>
 
               {/* Items */}
-              <div className="grid gap-3">
+              <div className="grid gap-2 md:gap-3">
                 {filteredItems.map((item) => (
                   <button
                     key={item.id}
@@ -290,30 +290,30 @@ export default function EnhancedOrderModal({
                       setSelectedItem(item);
                       setStep(2);
                     }}
-                    className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors text-left"
+                    className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors text-left"
                   >
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                      <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
+                        <h3 className="font-semibold text-gray-900 text-sm md:text-base">{item.name}</h3>
                         {item.isSignature && (
-                          <span className="bg-[#FF6B6B] text-white text-xs px-2 py-0.5 rounded-full">
+                          <span className="bg-[#FF6B6B] text-white text-xs px-1.5 md:px-2 py-0.5 rounded-full">
                             Signature
                           </span>
                         )}
                       </div>
                       {item.description && (
-                        <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                        <p className="text-xs md:text-sm text-gray-500 mt-1 line-clamp-2">
                           {item.description}
                         </p>
                       )}
                     </div>
-                    <div className="text-right">
+                    <div className="text-right flex-shrink-0">
                       {item.price ? (
-                        <span className="font-bold text-[#FF6B6B]">
+                        <span className="font-bold text-[#FF6B6B] text-sm md:text-base">
                           {formatCurrency(item.price)}
                         </span>
                       ) : (
-                        <span className="text-sm text-gray-500">
+                        <span className="text-xs md:text-sm text-gray-500">
                           from {formatCurrency(item.priceSmall || 0)}
                         </span>
                       )}
@@ -324,13 +324,15 @@ export default function EnhancedOrderModal({
 
               {/* Cart Summary */}
               {cart.itemCount > 0 && (
-                <button
-                  onClick={() => setStep(3)}
-                  className="fixed bottom-4 left-4 right-4 max-w-lg mx-auto bg-[#FF6B6B] text-white py-4 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-[#FF5252] transition-colors"
-                >
-                  <ShoppingBag size={20} />
-                  View Cart ({cart.itemCount}) - {formatCurrency(cart.total)}
-                </button>
+                <div className="sticky bottom-0 left-0 right-0 -mx-3 md:-mx-4 -mb-3 md:-mb-4 p-3 md:p-4 bg-white border-t">
+                  <button
+                    onClick={() => setStep(3)}
+                    className="w-full bg-[#FF6B6B] text-white py-3 md:py-4 rounded-full font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-[#FF5252] transition-colors text-sm md:text-base"
+                  >
+                    <ShoppingBag size={18} className="md:w-5 md:h-5" />
+                    View Cart ({cart.itemCount}) - {formatCurrency(cart.total)}
+                  </button>
+                </div>
               )}
             </div>
           ) : step === 2 && selectedItem ? (
