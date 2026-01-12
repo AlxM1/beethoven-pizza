@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface MenuProps {
-  onOrderPizza: (pizzaName: string) => void;
+  onOrderPizza: () => void;
 }
 
 const menuData = {
