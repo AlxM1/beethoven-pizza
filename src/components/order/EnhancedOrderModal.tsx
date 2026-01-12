@@ -588,20 +588,20 @@ export default function EnhancedOrderModal({
               </button>
             </div>
           ) : step === 5 ? (
-            <div className="space-y-4">
-              <div className="space-y-3">
+            <div className="space-y-3 md:space-y-4">
+              <div className="space-y-2 md:space-y-3">
                 <button
                   onClick={() => setPaymentMethod("phone")}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-colors ${
+                  className={`w-full p-3 md:p-4 rounded-xl border-2 flex items-center gap-3 md:gap-4 transition-colors ${
                     paymentMethod === "phone"
                       ? "border-[#FF6B6B] bg-[#FF6B6B]/10"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Phone className="text-[#FF6B6B]" size={24} />
-                  <div className="text-left">
-                    <div className="font-semibold">Call to Order</div>
-                    <div className="text-sm text-gray-500">
+                  <Phone className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <div className="text-left min-w-0">
+                    <div className="font-semibold text-sm md:text-base">Call to Order</div>
+                    <div className="text-xs md:text-sm text-gray-500">
                       We&apos;ll call you to confirm your order
                     </div>
                   </div>
@@ -609,16 +609,16 @@ export default function EnhancedOrderModal({
 
                 <button
                   onClick={() => setPaymentMethod("stripe")}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-colors ${
+                  className={`w-full p-3 md:p-4 rounded-xl border-2 flex items-center gap-3 md:gap-4 transition-colors ${
                     paymentMethod === "stripe"
                       ? "border-[#FF6B6B] bg-[#FF6B6B]/10"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <CreditCard className="text-[#FF6B6B]" size={24} />
-                  <div className="text-left">
-                    <div className="font-semibold">Pay Online</div>
-                    <div className="text-sm text-gray-500">
+                  <CreditCard className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <div className="text-left min-w-0">
+                    <div className="font-semibold text-sm md:text-base">Pay Online</div>
+                    <div className="text-xs md:text-sm text-gray-500">
                       Secure payment with credit card
                     </div>
                   </div>
@@ -626,24 +626,24 @@ export default function EnhancedOrderModal({
 
                 <button
                   onClick={() => setPaymentMethod("pickup")}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-colors ${
+                  className={`w-full p-3 md:p-4 rounded-xl border-2 flex items-center gap-3 md:gap-4 transition-colors ${
                     paymentMethod === "pickup"
                       ? "border-[#FF6B6B] bg-[#FF6B6B]/10"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <Wallet className="text-[#FF6B6B]" size={24} />
-                  <div className="text-left">
-                    <div className="font-semibold">Pay at Pickup</div>
-                    <div className="text-sm text-gray-500">
+                  <Wallet className="text-[#FF6B6B] flex-shrink-0" size={20} className="md:w-6 md:h-6" />
+                  <div className="text-left min-w-0">
+                    <div className="font-semibold text-sm md:text-base">Pay at Pickup</div>
+                    <div className="text-xs md:text-sm text-gray-500">
                       Pay when you pick up your order
                     </div>
                   </div>
                 </button>
               </div>
 
-              <div className="border-t pt-4">
-                <div className="flex justify-between text-xl font-bold text-gray-900 mb-4">
+              <div className="border-t pt-3 md:pt-4">
+                <div className="flex justify-between text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4">
                   <span>Total</span>
                   <span>{formatCurrency(cart.total)}</span>
                 </div>
@@ -651,11 +651,11 @@ export default function EnhancedOrderModal({
                 <button
                   onClick={placeOrder}
                   disabled={submitting}
-                  className="w-full py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full py-3 md:py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] disabled:opacity-50 flex items-center justify-center gap-2 text-sm md:text-base"
                 >
                   {submitting ? (
                     <>
-                      <Loader2 className="animate-spin" size={20} />
+                      <Loader2 className="animate-spin" size={18} className="md:w-5 md:h-5" />
                       Placing Order...
                     </>
                   ) : (
@@ -665,26 +665,26 @@ export default function EnhancedOrderModal({
               </div>
             </div>
           ) : step === 6 ? (
-            <div className="text-center py-8">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Check className="text-green-600" size={40} />
+            <div className="text-center py-6 md:py-8">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <Check className="text-green-600" size={32} className="md:w-10 md:h-10" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
                 Order Placed!
               </h3>
-              <p className="text-gray-500 mb-4">
+              <p className="text-gray-500 mb-3 md:mb-4 text-sm md:text-base">
                 Your order number is{" "}
                 <span className="font-bold text-[#FF6B6B]">{orderNumber}</span>
               </p>
-              <div className="bg-gray-50 rounded-xl p-4 mb-6 text-left">
-                <p className="font-medium text-gray-900 mb-2">Pickup Location:</p>
-                <p className="text-gray-600">4125 Columbia Valley Highway</p>
-                <p className="text-gray-600">Cultus Lake, BC V2R 5B6</p>
-                <p className="text-[#FF6B6B] font-bold mt-2">(604) 858-7766</p>
+              <div className="bg-gray-50 rounded-xl p-3 md:p-4 mb-4 md:mb-6 text-left">
+                <p className="font-medium text-gray-900 mb-2 text-sm md:text-base">Pickup Location:</p>
+                <p className="text-gray-600 text-sm md:text-base">4125 Columbia Valley Highway</p>
+                <p className="text-gray-600 text-sm md:text-base">Cultus Lake, BC V2R 5B6</p>
+                <p className="text-[#FF6B6B] font-bold mt-2 text-sm md:text-base">(604) 858-7766</p>
               </div>
               <button
                 onClick={onClose}
-                className="w-full py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252]"
+                className="w-full py-3 md:py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] text-sm md:text-base"
               >
                 Done
               </button>
