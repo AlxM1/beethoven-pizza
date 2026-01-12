@@ -85,51 +85,51 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+    <div className="space-y-4 md:space-y-6">
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900">Dashboard</h1>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white rounded-xl shadow-sm p-6 flex items-start gap-4"
+            className="bg-white rounded-xl shadow-sm p-4 md:p-6 flex items-start gap-3 md:gap-4"
           >
-            <div className={`${stat.color} p-3 rounded-lg text-white`}>
-              <stat.icon size={24} />
+            <div className={`${stat.color} p-2 md:p-3 rounded-lg text-white flex-shrink-0`}>
+              <stat.icon size={20} className="md:w-6 md:h-6" />
             </div>
-            <div>
-              <p className="text-sm text-gray-500">{stat.label}</p>
-              <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-              <p className="text-sm text-gray-400">{stat.subtext}</p>
+            <div className="min-w-0">
+              <p className="text-xs md:text-sm text-gray-500 truncate">{stat.label}</p>
+              <p className="text-xl md:text-2xl font-bold text-gray-900 truncate">{stat.value}</p>
+              <p className="text-xs md:text-sm text-gray-400 truncate">{stat.subtext}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Recent Orders */}
-        <div className="bg-white rounded-xl shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-4">
             Recent Orders
           </h2>
           {data.recentOrders.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">No orders yet</p>
+            <p className="text-gray-500 text-center py-8 text-sm md:text-base">No orders yet</p>
           ) : (
             <div className="space-y-3">
               {data.recentOrders.slice(0, 5).map((order) => (
                 <div
                   key={order.id}
-                  className="flex items-center justify-between py-3 border-b last:border-0"
+                  className="flex items-center justify-between py-2 md:py-3 border-b last:border-0"
                 >
-                  <div>
-                    <p className="font-medium text-gray-900">
+                  <div className="min-w-0 flex-1 mr-2">
+                    <p className="font-medium text-gray-900 text-sm md:text-base truncate">
                       {order.orderNumber}
                     </p>
-                    <p className="text-sm text-gray-500">{order.customerName}</p>
+                    <p className="text-xs md:text-sm text-gray-500 truncate">{order.customerName}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-gray-900">
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-semibold text-gray-900 text-sm md:text-base">
                       {formatCurrency(order.total)}
                     </p>
                     <span
@@ -155,28 +155,28 @@ export default function DashboardPage() {
         </div>
 
         {/* Popular Items */}
-        <div className="bg-white rounded-xl shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
+          <h2 className="text-base md:text-lg font-semibold text-gray-900 mb-4">
             Popular Items (This Month)
           </h2>
           {data.popularItems.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">No data yet</p>
+            <p className="text-gray-500 text-center py-8 text-sm md:text-base">No data yet</p>
           ) : (
             <div className="space-y-3">
               {data.popularItems.map((item, index) => (
                 <div
                   key={item.menuItemId}
-                  className="flex items-center gap-4 py-3 border-b last:border-0"
+                  className="flex items-center gap-3 md:gap-4 py-2 md:py-3 border-b last:border-0"
                 >
-                  <span className="w-8 h-8 rounded-full bg-[#FF6B6B] text-white flex items-center justify-center font-bold">
+                  <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#FF6B6B] text-white flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">
                     {index + 1}
                   </span>
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-gray-900 text-sm md:text-base truncate">
                       {item.menuItem?.name || "Unknown Item"}
                     </p>
                   </div>
-                  <span className="text-gray-500">
+                  <span className="text-gray-500 text-sm md:text-base flex-shrink-0">
                     {item._sum.quantity} sold
                   </span>
                 </div>
