@@ -429,14 +429,14 @@ export default function EnhancedOrderModal({
               </button>
             </div>
           ) : step === 3 ? (
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {cart.items.length === 0 ? (
-                <div className="text-center py-12">
-                  <ShoppingBag className="mx-auto text-gray-300 mb-4" size={48} />
-                  <p className="text-gray-500">Your cart is empty</p>
+                <div className="text-center py-8 md:py-12">
+                  <ShoppingBag className="mx-auto text-gray-300 mb-3 md:mb-4" size={40} className="md:w-12 md:h-12" />
+                  <p className="text-gray-500 text-sm md:text-base">Your cart is empty</p>
                   <button
                     onClick={() => setStep(1)}
-                    className="mt-4 text-[#FF6B6B] font-medium"
+                    className="mt-3 md:mt-4 text-[#FF6B6B] font-medium text-sm md:text-base"
                   >
                     Browse Menu
                   </button>
@@ -444,71 +444,71 @@ export default function EnhancedOrderModal({
               ) : (
                 <>
                   {cart.items.map((item) => (
-                    <div key={item.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900">
+                    <div key={item.id} className="flex items-start gap-2 md:gap-4 p-3 md:p-4 bg-gray-50 rounded-xl">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-gray-900 text-sm md:text-base">
                           {item.name}
                           {item.size && ` (${item.size})`}
                         </h4>
                         {item.toppings.length > 0 && (
-                          <p className="text-sm text-gray-500">
+                          <p className="text-xs md:text-sm text-gray-500 truncate">
                             + {item.toppings.map((t) => t.name).join(", ")}
                           </p>
                         )}
-                        <p className="text-[#FF6B6B] font-bold mt-1">
+                        <p className="text-[#FF6B6B] font-bold mt-1 text-sm md:text-base">
                           {formatCurrency(
                             (item.unitPrice + item.toppings.reduce((s, t) => s + t.price, 0)) *
                               item.quantity
                           )}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 md:gap-2 flex-shrink-0">
                         <button
                           onClick={() =>
                             item.quantity > 1
                               ? cart.updateQuantity(item.id, item.quantity - 1)
                               : cart.removeItem(item.id)
                           }
-                          className="p-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                          className="p-1 md:p-1.5 bg-gray-200 rounded-full hover:bg-gray-300"
                         >
-                          {item.quantity === 1 ? <Trash2 size={16} /> : <Minus size={16} />}
+                          {item.quantity === 1 ? <Trash2 size={14} className="md:w-4 md:h-4" /> : <Minus size={14} className="md:w-4 md:h-4" />}
                         </button>
-                        <span className="w-8 text-center font-medium">{item.quantity}</span>
+                        <span className="w-6 md:w-8 text-center font-medium text-sm md:text-base">{item.quantity}</span>
                         <button
                           onClick={() => cart.updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                          className="p-1 md:p-1.5 bg-gray-200 rounded-full hover:bg-gray-300"
                         >
-                          <Plus size={16} />
+                          <Plus size={14} className="md:w-4 md:h-4" />
                         </button>
                       </div>
                     </div>
                   ))}
 
-                  <div className="border-t pt-4 space-y-2">
-                    <div className="flex justify-between text-gray-600">
+                  <div className="border-t pt-3 md:pt-4 space-y-1.5 md:space-y-2">
+                    <div className="flex justify-between text-gray-600 text-sm md:text-base">
                       <span>Subtotal</span>
                       <span>{formatCurrency(cart.subtotal)}</span>
                     </div>
-                    <div className="flex justify-between text-gray-600">
+                    <div className="flex justify-between text-gray-600 text-sm md:text-base">
                       <span>Tax (12%)</span>
                       <span>{formatCurrency(cart.tax)}</span>
                     </div>
-                    <div className="flex justify-between text-xl font-bold text-gray-900">
+                    <div className="flex justify-between text-lg md:text-xl font-bold text-gray-900">
                       <span>Total</span>
                       <span>{formatCurrency(cart.total)}</span>
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <button
                       onClick={() => setStep(1)}
-                      className="flex-1 py-3 border border-gray-300 rounded-full font-medium hover:bg-gray-50"
+                      className="flex-1 py-3 md:py-3.5 border border-gray-300 rounded-full font-medium hover:bg-gray-50 text-sm md:text-base"
                     >
                       Add More
                     </button>
                     <button
                       onClick={() => setStep(4)}
-                      className="flex-1 py-3 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252]"
+                      className="flex-1 py-3 md:py-3.5 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] text-sm md:text-base"
                     >
                       Checkout
                     </button>
@@ -517,64 +517,64 @@ export default function EnhancedOrderModal({
               )}
             </div>
           ) : step === 4 ? (
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Name *
                 </label>
                 <input
                   type="text"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-xl"
+                  className="w-full p-2.5 md:p-3 border border-gray-300 rounded-xl text-sm md:text-base"
                   placeholder="Your name"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Phone *
                 </label>
                 <input
                   type="tel"
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-xl"
+                  className="w-full p-2.5 md:p-3 border border-gray-300 rounded-xl text-sm md:text-base"
                   placeholder="(604) 555-1234"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
                   type="email"
                   value={customerEmail}
                   onChange={(e) => setCustomerEmail(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-xl"
+                  className="w-full p-2.5 md:p-3 border border-gray-300 rounded-xl text-sm md:text-base"
                   placeholder="your@email.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Pickup Time
                 </label>
                 <input
                   type="time"
                   value={pickupTime}
                   onChange={(e) => setPickupTime(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-xl"
+                  className="w-full p-2.5 md:p-3 border border-gray-300 rounded-xl text-sm md:text-base"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                   Order Notes
                 </label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-xl resize-none h-20"
+                  className="w-full p-2.5 md:p-3 border border-gray-300 rounded-xl resize-none h-20 text-sm md:text-base"
                   placeholder="Any special requests?"
                 />
               </div>
@@ -582,7 +582,7 @@ export default function EnhancedOrderModal({
               <button
                 onClick={() => setStep(5)}
                 disabled={!customerName || !customerPhone}
-                className="w-full py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 md:py-4 bg-[#FF6B6B] text-white rounded-full font-bold hover:bg-[#FF5252] disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base"
               >
                 Continue to Payment
               </button>
