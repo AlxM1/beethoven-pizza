@@ -129,7 +129,7 @@ export default function OrdersPage() {
       {/* Orders List */}
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="animate-spin text-[#FF6B6B]" size={32} className="md:w-10 md:h-10" />
+          <Loader2 className="animate-spin text-[#FF6B6B] md:w-10 md:h-10" size={32} />
         </div>
       ) : orders.length === 0 ? (
         <div className="bg-white rounded-xl shadow-sm p-8 md:p-12 text-center">
