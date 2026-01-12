@@ -336,31 +336,31 @@ export default function EnhancedOrderModal({
               )}
             </div>
           ) : step === 2 && selectedItem ? (
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">{selectedItem.name}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">{selectedItem.name}</h3>
                 {selectedItem.description && (
-                  <p className="text-gray-500 mt-1">{selectedItem.description}</p>
+                  <p className="text-gray-500 mt-1 text-sm md:text-base">{selectedItem.description}</p>
                 )}
               </div>
 
               {/* Size Selection */}
               {!selectedItem.price && (
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Size</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">Size</h4>
                   <div className="grid grid-cols-3 gap-2">
                     {(["small", "medium", "large"] as const).map((size) => (
                       <button
                         key={size}
                         onClick={() => setSelectedSize(size)}
-                        className={`p-3 rounded-xl border-2 transition-colors ${
+                        className={`p-2 md:p-3 rounded-xl border-2 transition-colors ${
                           selectedSize === size
                             ? "border-[#FF6B6B] bg-[#FF6B6B]/10"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
-                        <div className="font-medium capitalize">{size}</div>
-                        <div className="text-sm text-[#FF6B6B] font-bold">
+                        <div className="font-medium capitalize text-sm md:text-base">{size}</div>
+                        <div className="text-xs md:text-sm text-[#FF6B6B] font-bold">
                           {formatCurrency(getPrice(selectedItem, size))}
                         </div>
                       </button>
@@ -372,8 +372,8 @@ export default function EnhancedOrderModal({
               {/* Toppings for Pizza */}
               {isPizzaCategory && (
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Extra Toppings</h4>
-                  <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">Extra Toppings</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto">
                     {toppings.map((topping) => {
                       const isSelected = selectedToppings.some((t) => t.id === topping.id);
                       return (
@@ -386,15 +386,15 @@ export default function EnhancedOrderModal({
                               setSelectedToppings([...selectedToppings, topping]);
                             }
                           }}
-                          className={`p-2 rounded-lg border text-left text-sm transition-colors ${
+                          className={`p-2 rounded-lg border text-left text-xs md:text-sm transition-colors ${
                             isSelected
                               ? "border-[#FF6B6B] bg-[#FF6B6B]/10"
                               : "border-gray-200 hover:border-gray-300"
                           }`}
                         >
-                          <div className="flex justify-between">
-                            <span>{topping.name}</span>
-                            <span className="text-gray-500">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="truncate">{topping.name}</span>
+                            <span className="text-gray-500 flex-shrink-0 text-xs">
                               +{formatCurrency(getToppingPrice(topping, selectedSize))}
                             </span>
                           </div>
@@ -407,19 +407,19 @@ export default function EnhancedOrderModal({
 
               {/* Special Instructions */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Special Instructions</h4>
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">Special Instructions</h4>
                 <textarea
                   value={specialInstructions}
                   onChange={(e) => setSpecialInstructions(e.target.value)}
                   placeholder="Any special requests?"
-                  className="w-full p-3 border border-gray-200 rounded-xl resize-none h-20"
+                  className="w-full p-2 md:p-3 border border-gray-200 rounded-xl resize-none h-20 text-sm md:text-base"
                 />
               </div>
 
               {/* Add to Cart Button */}
               <button
                 onClick={addToCart}
-                className="w-full bg-[#FF6B6B] text-white py-4 rounded-full font-bold hover:bg-[#FF5252] transition-colors"
+                className="w-full bg-[#FF6B6B] text-white py-3 md:py-4 rounded-full font-bold hover:bg-[#FF5252] transition-colors text-sm md:text-base"
               >
                 Add to Cart -{" "}
                 {formatCurrency(
